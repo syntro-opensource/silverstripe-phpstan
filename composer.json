@@ -1,5 +1,5 @@
 {
-    "name": "symbiote/silverstripe-phpstan",
+    "name": "syntro/silverstripe-phpstan",
     "description": "PHPStan for Silverstripe",
     "type": "library",
     "keywords": [
