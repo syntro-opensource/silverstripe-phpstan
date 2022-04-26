@@ -73,7 +73,7 @@ jobs:
         run: |
           apt update && apt-get install git -yqq
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: install dependencies
         run: |
           composer require --no-update silverstripe/recipe-cms:$RECIPE_CMS_VERSION &&\
@@ -118,7 +118,7 @@ jobs:
         run: |
           apt update && apt-get install git -yqq
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: install dependencies
         run: |
           composer require --no-update silverstripe/recipe-cms:$RECIPE_CMS_VERSION &&\
@@ -130,7 +130,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: lint source
         uses: chindit/actions-phpcs@master
         with:
