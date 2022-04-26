@@ -41,6 +41,9 @@ jobs:
         recipe:
           - 4.3.*
           - 4.x-dev
+        exclude:
+          - php: '8.0'
+            recipe: 4.3.*
     container: brettt89/silverstripe-web:${{ matrix.php }}-apache
     services:
       database:
@@ -93,11 +96,14 @@ jobs:
       fail-fast: false
       matrix:
         php:
-          - 7.4
-          - 8.0
+          - '7.4'
+          - '8.0'
         recipe:
           - 4.3.*
           - 4.x-dev
+        exclude:
+          - php: '8.0'
+            recipe: 4.3.*
     container: brettt89/silverstripe-web:7.4-apache
     env:
       RECIPE_CMS_VERSION: ${{ matrix.recipe }}
