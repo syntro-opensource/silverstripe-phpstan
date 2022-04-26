@@ -9,7 +9,7 @@ parameters:
         - SilverStripe\ORM\DataObject
         - SilverStripe\ORM\DataObjectInterface
         - Symbiote\QueuedJobs\Services\AbstractQueuedJob # symbiote/silverstripe-queuedjobs module support
-    excludes_analyse:
+    excludePaths:
         - silverstripe-cache
 services:
     # This rule will throw an error if you `return false` from a RequestFilter::preRequest() method
@@ -86,3 +86,8 @@ services:
         class: Symbiote\SilverstripePHPStan\Type\HasMethodTypeSpecifyingExtension
         tags:
             - phpstan.typeSpecifier.methodTypeSpecifyingExtension
+    # Special handling for configuration properties
+    -
+        class: Symbiote\SilverstripePHPStan\Reflection\ReadWritePropertiesExtension
+        tags:
+            - phpstan.properties.readWriteExtension
