@@ -5,12 +5,12 @@ parameters:
     ignoreErrors:
         # Ignore as PHPStan has no support for method_exists()
         # - '%Call to an undefined method PHPStan\\Type\\Type::getItemType()%'
-    excludes_analyse:
+    excludePaths:
         # Exclude test data files
         - tests/bootstrap-phpstan.php
         # Exclude bootstrap file
         - %currentWorkingDirectory%/tests/*/Data/*
-    autoload_directories:
+    scanDirectories:
         # NOTE(Jake): 2018-05-20
         #
         # If you're using the phpstan-shim, you will get errors when trying to
