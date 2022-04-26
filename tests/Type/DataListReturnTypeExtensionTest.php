@@ -15,6 +15,7 @@ class DataListReturnTypeExtensionTest extends TypeInferenceTestCase
     public function dataFileAsserts(): iterable
     {
         // path to a file with actual asserts of expected types:
+        require_once(__DIR__ . '/data/data-list-return-types.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/data-list-return-types.php');
     }
 
@@ -34,7 +35,7 @@ class DataListReturnTypeExtensionTest extends TypeInferenceTestCase
     {
         // path to your project's phpstan.neon, or extension.neon in case of custom extension packages
         return [
-            // __DIR__ . '/../extension.neon'
+            __DIR__ . '/../../phpstan.neon'
         ];
     }
 

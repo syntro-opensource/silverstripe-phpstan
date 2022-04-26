@@ -11,7 +11,7 @@ use PHPStan\Type\Type;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\IterableTypeTrait;
+use PHPStan\Type\IterableType;
 use Symbiote\SilverstripePHPStan\Utility;
 
 class DataListReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTypeExtension
@@ -101,7 +101,7 @@ class DataListReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTy
             case 'removeMany':
             case 'removeByFilter':
             case 'removeAll':
-                return $type->getIterableValueType();
+                return $type;
 
             case 'getIDList':
                 return new ArrayType(new IntegerType, new IntegerType);
