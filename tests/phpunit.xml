@@ -10,9 +10,17 @@
 		failOnRisky="true"
 		failOnWarning="true"
 >
-	<filter>
-		<whitelist>
-			<directory suffix=".php">../src</directory>
-		</whitelist>
-	</filter>
+    <testsuites>
+        <testsuite name="Default">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <coverage>
+        <exclude>
+            <directory suffix=".php">../vendor</directory>
+        </exclude>
+        <include>
+            <directory suffix=".php">../src</directory>
+        </include>
+    </coverage>
 </phpunit>

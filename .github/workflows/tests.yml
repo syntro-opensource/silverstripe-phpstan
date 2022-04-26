@@ -1,0 +1,141 @@
+name: 🎭 Tests
+on:
+  push:
+    paths-ignore:
+      - .chglog/**
+      - .github/**
+      - '!.github/workflows/tests.yml'
+      - .editorconfig
+      - .gitattributes
+      - .gitignore
+      - .htaccess
+      - '**.md'
+    branches:
+      - master
+  pull_request:
+    paths-ignore:
+      - .chglog/**
+      - .github/**
+      - '!.github/workflows/tests.yml'
+      - .editorconfig
+      - .gitattributes
+      - .gitignore
+      - .htaccess
+      - '**.md'
+    branches:
+      - master
+env:
+  DB: MYSQL
+  PDO: 1
+  SS_ENVIRONMENT_TYPE: "dev"
+jobs:
+  phpunit:
+    name: 🧩 PHPUnit
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php:
+          - '7.4'
+          - '8.0'
+        recipe:
+          - 4.3.*
+          - 4.x-dev
+        exclude:
+          - php: '8.0'
+            recipe: 4.3.*
+    container: brettt89/silverstripe-web:${{ matrix.php }}-apache
+    services:
+      database:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    env:
+      SS_DEFAULT_ADMIN_USERNAME: admin
+      SS_DEFAULT_ADMIN_PASSWORD: admin
+      SS_DATABASE_SERVER: database
+      SS_DATABASE_NAME: ss_default_${{ matrix.php }}
+      SS_DATABASE_USERNAME: root
+      SS_DATABASE_PASSWORD: ''
+      SS_ENVIRONMENT_TYPE: dev
+      RECIPE_CMS_VERSION: ${{ matrix.recipe }}
+    steps:
+      - name: Install Composer
+        run: |
+          curl \
+            -sS https://getcomposer.org/installer \
+            | php && \
+            mv -f composer.phar /usr/local/bin/composer
+      - name: Install git
+        run: |
+          apt update && apt-get install git -yqq
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: install dependencies
+        run: |
+          composer require --no-update silverstripe/recipe-cms:$RECIPE_CMS_VERSION &&\
+          composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
+      - name: run phpunit
+        run: vendor/bin/phpunit -d memory_limit=500M -c "tests/phpunit.xml" tests/
+      # - name: generate coverage
+      #   run: phpdbg -qrr vendor/bin/phpunit -dmemory_limit=512M --coverage-clover=coverage.xml tests/
+      #   if: ${{ matrix.php == '7.4' }}
+      # - name: submit coverage
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     files: ./coverage.xml
+      #   if: ${{ matrix.php == '7.4' }}
+  phpstan:
+    name: 🔍 PHPStan
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php:
+          - '7.4'
+          - '8.0'
+        recipe:
+          - 4.3.*
+          - 4.x-dev
+        exclude:
+          - php: '8.0'
+            recipe: 4.3.*
+    container: brettt89/silverstripe-web:7.4-apache
+    env:
+      RECIPE_CMS_VERSION: ${{ matrix.recipe }}
+    steps:
+      - name: Install Composer
+        run: |
+          curl \
+            -sS https://getcomposer.org/installer \
+            | php && \
+            mv -f composer.phar /usr/local/bin/composer
+      - name: Install git
+        run: |
+          apt update && apt-get install git -yqq
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: install dependencies
+        run: |
+          composer require --no-update silverstripe/recipe-cms:$RECIPE_CMS_VERSION &&\
+          composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
+      - name: run phpstan
+        run: vendor/bin/phpstan analyse src/ tests/ -c "tests/phpstan.neon" -a "tests/bootstrap-phpstan.php" --level 4 --memory-limit 1G
+  phpcs:
+    name: 🔮 PHPcs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: lint source
+        uses: chindit/actions-phpcs@master
+        with:
+          dir: src/
+      - name: lint tests
+        uses: chindit/actions-phpcs@master
+        with:
+          dir: tests/

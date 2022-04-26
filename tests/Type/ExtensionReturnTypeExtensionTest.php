@@ -2,38 +2,23 @@
 
 namespace Symbiote\SilverstripePHPStan\Tests\Type;
 
-use Symbiote\SilverstripePHPStan\Type\ExtensionReturnTypeExtension;
+use Symbiote\SilverstripePHPStan\Type\DataListReturnTypeExtension;
+use Symbiote\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension;
+use Symbiote\SilverstripePHPStan\ClassHelper;
 use Symbiote\SilverstripePHPStan\ConfigHelper;
-use Symbiote\SilverstripePHPStan\Tests\ResolverTest;
+use PHPStan\Testing\TypeInferenceTestCase;
 
-class ExtensionReturnTypeExtensionTest extends ResolverTest
+class ExtensionReturnTypeExtensionTest extends TypeInferenceTestCase
 {
-    public function dataDynamicMethodReturnTypeExtensions(): array
-    {
-        return [
-            //  Test `$this->getOwner()` returns `Foo`
-            [
-                sprintf(\DataExtensionDynamicMethodReturnTypesNamespace\Foo::class),
-                sprintf('$this->getOwner()'),
-            ],
-        ];
-    }
-
     /**
-     * Test that owner returns a UnionType if multiple classes are using an extension.
-     *
-     * @dataProvider dataDynamicMethodReturnTypeExtensions
-     * @param string $description
-     * @param string $expression
+     * @return iterable<mixed>
      */
-    public function testDynamicMethodReturnTypeExtensions(
-        string $description,
-        string $expression
-    ) {
-        $dynamicMethodReturnTypeExtensions = [
-            new ExtensionReturnTypeExtension(),
-        ];
-        $dynamicStaticMethodReturnTypeExtensions = [];
+    public function dataFileAsserts(): iterable
+    {
+        // path to a file with actual asserts of expected types:
+        require_once(__DIR__ . '/data/data-extension-dynamic-method-return-types.php');
+        require_once(__DIR__ . '/data/data-extension-union-dynamic-method-return-types.php');
+
         ConfigHelper::update(
             \DataExtensionDynamicMethodReturnTypesNamespace\Foo::class,
             'extensions',
@@ -41,45 +26,8 @@ class ExtensionReturnTypeExtensionTest extends ResolverTest
             \DataExtensionDynamicMethodReturnTypesNamespace\FooDataExtension::class,
             ]
         );
-        $this->assertTypes(
-            __DIR__ . '/data/data-extension-dynamic-method-return-types.php',
-            $description,
-            $expression,
-            $dynamicMethodReturnTypeExtensions,
-            $dynamicStaticMethodReturnTypeExtensions
-        );
-    }
+        // yield from $this->gatherAssertTypes(__DIR__ . '/data/data-extension-dynamic-method-return-types.php');
 
-    public function dataUnionDynamicMethodReturnTypeExtensions(): array
-    {
-        return [
-            //  Test `$this->getOwner()` returns `Foo`
-            [
-                sprintf(
-                    '%s|%s',
-                    \DataExtensionUnionDynamicMethodReturnTypesNamespace\Foo::class,
-                    \DataExtensionUnionDynamicMethodReturnTypesNamespace\FooTwo::class
-                ),
-                sprintf('$this->getOwner()'),
-            ],
-        ];
-    }
-
-    /**
-     * Test that owner returns a UnionType if multiple classes are using an extension.
-     *
-     * @dataProvider dataUnionDynamicMethodReturnTypeExtensions
-     * @param string $description
-     * @param string $expression
-     */
-    public function testUnionDynamicMethodReturnTypeExtensions(
-        string $description,
-        string $expression
-    ) {
-        $dynamicMethodReturnTypeExtensions = [
-            new ExtensionReturnTypeExtension(),
-        ];
-        $dynamicStaticMethodReturnTypeExtensions = [];
 
         $extensions = [
             \DataExtensionUnionDynamicMethodReturnTypesNamespace\FooDataExtension::class,
@@ -94,12 +42,27 @@ class ExtensionReturnTypeExtensionTest extends ResolverTest
             'extensions',
             $extensions
         );
-        $this->assertTypes(
-            __DIR__ . '/data/data-extension-union-dynamic-method-return-types.php',
-            $description,
-            $expression,
-            $dynamicMethodReturnTypeExtensions,
-            $dynamicStaticMethodReturnTypeExtensions
-        );
+
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/data-extension-dynamic-method-return-types.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/data-extension-union-dynamic-method-return-types.php');
+    }
+
+    /**
+     * @dataProvider dataFileAsserts
+     */
+    public function testFileAsserts(
+        string $assertType,
+        string $file,
+        ...$args
+    ): void {
+        $this->assertFileAsserts($assertType, $file, ...$args);
+    }
+
+    public static function getAdditionalConfigFiles(): array
+    {
+        // path to your project's phpstan.neon, or extension.neon in case of custom extension packages
+        return [
+            __DIR__ . '/../../phpstan.neon'
+        ];
     }
 }

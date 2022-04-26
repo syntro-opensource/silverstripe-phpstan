@@ -4,65 +4,36 @@ namespace Symbiote\SilverstripePHPStan\Tests\Type;
 
 use Symbiote\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension;
 use Symbiote\SilverstripePHPStan\ClassHelper;
-use Symbiote\SilverstripePHPStan\Tests\ResolverTest;
+use PHPStan\Testing\TypeInferenceTestCase;
 
-class DataObjectGetStaticReturnTypeExtensionTest extends ResolverTest
+class DataObjectGetStaticReturnTypeExtensionTest extends TypeInferenceTestCase
 {
-    public function dataDynamicMethodReturnTypeExtensions(): array
+    /**
+     * @return iterable<mixed>
+     */
+    public function dataFileAsserts(): iterable
     {
-        return [
-            // Test `SiteTree::get()` returns `DataList<SiteTree>`
-            [
-                sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
-                sprintf('%s::get()', ClassHelper::SiteTree),
-            ],
-            // DataObject::get('SiteTree')
-            [
-                sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
-                sprintf('%s::get("%s")', ClassHelper::DataObject, ClassHelper::SiteTree),
-            ],
-            // DataObject::get(ClassHelper::SiteTree)
-            [
-                sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
-                sprintf('%s::get(%s::class)', ClassHelper::DataObject, ClassHelper::SiteTree),
-            ],
-            // SiteTree::get_one()
-            [
-                ClassHelper::SiteTree,
-                sprintf('%s::get_one()', ClassHelper::SiteTree),
-            ],
-            // DataObject::get_one('SiteTree')
-            [
-                ClassHelper::SiteTree,
-                sprintf('%s::get_one("%s")', ClassHelper::DataObject, ClassHelper::SiteTree),
-            ],
-            // DataObject::get_one(ClassHelper::SiteTree)
-            [
-                sprintf(ClassHelper::SiteTree),
-                sprintf('%s::get_one(%s::class)', ClassHelper::DataObject, ClassHelper::SiteTree),
-            ],
-        ];
+        // path to a file with actual asserts of expected types:
+        require_once(__DIR__ . '/data/data-object-static-dynamic-method-return-types.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/data-object-static-dynamic-method-return-types.php');
     }
 
     /**
-     * @dataProvider dataDynamicMethodReturnTypeExtensions
-     * @param string $description
-     * @param string $expression
+     * @dataProvider dataFileAsserts
      */
-    public function testDynamicMethodReturnTypeExtensions(
-        string $description,
-        string $expression
-    ) {
-        $dynamicMethodReturnTypeExtensions = [];
-        $dynamicStaticMethodReturnTypeExtensions = [
-            new DataObjectGetStaticReturnTypeExtension(),
+    public function testFileAsserts(
+        string $assertType,
+        string $file,
+        ...$args
+    ): void {
+        $this->assertFileAsserts($assertType, $file, ...$args);
+    }
+
+    public static function getAdditionalConfigFiles(): array
+    {
+        // path to your project's phpstan.neon, or extension.neon in case of custom extension packages
+        return [
+            __DIR__ . '/../../phpstan.neon'
         ];
-        $this->assertTypes(
-            __DIR__ . '/data/data-object-dynamic-method-return-types.php',
-            $description,
-            $expression,
-            $dynamicMethodReturnTypeExtensions,
-            $dynamicStaticMethodReturnTypeExtensions
-        );
     }
 }
