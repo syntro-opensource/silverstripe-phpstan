@@ -17,3 +17,5 @@ parameters:
         # scan silverstripe-phpstan.
         #
         - %currentWorkingDirectory%/tests/Type/data/
+includes:
+    - %currentWorkingDirectory%/phpstan.neon
