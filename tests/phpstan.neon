@@ -18,3 +18,6 @@ parameters:
         # scan silverstripe-phpstan.
         #
         - %currentWorkingDirectory%/tests/Type/data/
+    scanFiles:
+        - %currentWorkingDirectory%/tests/Type/data/data-extension-dynamic-method-return-types.php
+        - %currentWorkingDirectory%/tests/Type/data/data-extension-union-dynamic-method-return-types.php
