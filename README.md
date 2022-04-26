@@ -1,6 +1,6 @@
 # PHPStan for Silverstripe
 
-A module allowing PHPStan to work with Silverstripe
+A module allowing PHPStan to work with Silverstripe.
 
 [![🎭 Tests](https://github.com/syntro-opensource/silverstripe-phpstan/workflows/%F0%9F%8E%AD%20Tests/badge.svg)](https://github.com/syntro-opensource/silverstripe-phpstan/actions?query=workflow%3A%22%F0%9F%8E%AD+Tests%22+branch%3A%22master%22)
 [![codecov](https://codecov.io/gh/syntro-opensource/silverstripe-phpstan/branch/master/graph/badge.svg)](https://codecov.io/gh/syntro-opensource/silverstripe-phpstan)
@@ -40,3 +40,7 @@ composer require --dev syntro/silverstripe-phpstan
 ## Known Limitations
 
 * The type of the `owner` property can't be reasoned about for extensions. You must use `getOwner()`. Related Issues: [#1043](https://github.com/phpstan/phpstan/issues/1043) and [#1044](https://github.com/phpstan/phpstan/issues/1044)
+
+## Credits
+
+* [Symbiote & Contributors](https://github.com/symbiote/silverstripe-phpstan) For running this module up to PHPStan 0.11
