@@ -9,22 +9,6 @@ use PHPStan\Testing\TypeInferenceTestCase;
 
 class DataObjectReturnTypeExtensionTest extends TypeInferenceTestCase
 {
-    // public function dataDynamicMethodReturnTypeExtensions(): array
-    // {
-    //     return [
-    //         // Test `$sitetree->dbObject("ID")` returns `DBInt`
-    //         [
-    //             sprintf('%s', ClassHelper::DBInt),
-    //             sprintf('$sitetree->dbObject("%s")', 'ID'),
-    //         ],
-    //         // Test `$sitetree->dbObject("Content")` returns `HTMLText`
-    //         [
-    //             sprintf('%s', ClassHelper::HTMLText),
-    //             sprintf('$sitetree->dbObject("%s")', 'Content'),
-    //         ],
-    //     ];
-    // }
-
     /**
      * @return iterable<mixed>
      */
