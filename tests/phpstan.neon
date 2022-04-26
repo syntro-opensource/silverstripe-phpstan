@@ -10,6 +10,7 @@ parameters:
         - tests/bootstrap-phpstan.php
         # Exclude bootstrap file
         - %currentWorkingDirectory%/tests/*/Data/*
+        - %currentWorkingDirectory%/tests/Type/data/*
     scanDirectories:
         # NOTE(Jake): 2018-05-20
         #
