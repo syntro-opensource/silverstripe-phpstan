@@ -26,7 +26,7 @@ class Foo
         );
         assertType(
             ClassHelper::SiteTree,
-            SiteTre::get_one()
+            SiteTree::get_one()
         );
         assertType(
             ClassHelper::SiteTree,
