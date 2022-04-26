@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "release": "git fetch && git-chglog -o CHANGELOG.md $([[ ! -z $npm_config_next ]] && echo \"--next-tag $npm_config_next\" )"
+  }
+}
