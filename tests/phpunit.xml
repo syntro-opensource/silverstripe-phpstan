@@ -18,6 +18,7 @@
     <coverage>
         <exclude>
             <directory suffix=".php">../vendor</directory>
+            <file>bootstrap-phpstan.php</file>
         </exclude>
         <include>
             <directory suffix=".php">../src</directory>
