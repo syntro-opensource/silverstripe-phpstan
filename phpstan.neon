@@ -1,4 +1,6 @@
 parameters:
+    bootstrapFiles:
+        - bootstrap.php
     earlyTerminatingMethodCalls:
         SilverStripe\Control\Controller:
             - redirect
