@@ -118,7 +118,7 @@ jobs:
           composer require --no-update silverstripe/recipe-cms:$RECIPE_CMS_VERSION &&\
           composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
       - name: run phpstan
-        run: vendor/bin/phpstan analyse src/ tests/ -c "tests/phpstan.neon" -a "tests/bootstrap-phpstan.php" --level 4
+        run: vendor/bin/phpstan analyse src/ tests/ -c "tests/phpstan.neon" -a "tests/bootstrap-phpstan.php" --level 4 --memory-limit 1G
   phpcs:
     name: 🔮 PHPcs
     runs-on: ubuntu-latest
