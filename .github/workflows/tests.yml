@@ -76,7 +76,7 @@ jobs:
           composer require --no-update silverstripe/recipe-cms:$RECIPE_CMS_VERSION &&\
           composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
       - name: run phpunit
-        run: vendor/bin/phpunit -c "tests/phpunit.xml" tests/
+        run: vendor/bin/phpunit -d memory_limit=500M -c "tests/phpunit.xml" tests/
       # - name: generate coverage
       #   run: phpdbg -qrr vendor/bin/phpunit -dmemory_limit=512M --coverage-clover=coverage.xml tests/
       #   if: ${{ matrix.php == '7.4' }}
