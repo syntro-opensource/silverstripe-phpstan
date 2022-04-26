@@ -18,22 +18,14 @@ class Foo
         );
         assertType(
             sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
-            DataObject::get(sprintf(ClassHelper::SiteTree))
-        );
-        assertType(
-            sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
             DataObject::get(SiteTree::class)
         );
-        // assertType(
-        //     ClassHelper::SiteTree,
-        //     SiteTree::get_one()
-        // );
+        // // assertType(
+        // //     ClassHelper::SiteTree,
+        // //     SiteTree::get_one()
+        // // );
         assertType(
-            ClassHelper::SiteTree,
-            DataObject::get_one(sprintf(ClassHelper::SiteTree))
-        );
-        assertType(
-            sprintf(ClassHelper::SiteTree),
+            sprintf('%s', ClassHelper::SiteTree),
             DataObject::get_one(SiteTree::class)
         );
 		die;
