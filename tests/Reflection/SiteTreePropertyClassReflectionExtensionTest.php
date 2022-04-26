@@ -9,7 +9,7 @@ use PHPStan\Type\IntegerType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\NullType;
 
-final class SiteTreePropertyClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
+final class SiteTreePropertyClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 {
     /** @var \PHPStan\Broker\Broker */
     private $broker;

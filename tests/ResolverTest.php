@@ -25,7 +25,7 @@ use PHPStan\Rules\Properties\PropertyReflectionFinder;
 use PHPStan\Node\VirtualNode;
 use PHPStan\Php\PhpVersion;
 
-abstract class ResolverTest extends \PHPStan\Testing\TestCase
+abstract class ResolverTest extends \PHPStan\Testing\PHPStanTestCase
 {
     /** @var \PHPStan\Broker\Broker */
     private $broker;

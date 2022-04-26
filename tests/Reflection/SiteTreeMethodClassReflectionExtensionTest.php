@@ -12,7 +12,7 @@ use PHPStan\Type\MixedType;
 use PHPStan\Type\NullType;
 use PHPStan\Type\ObjectType;
 
-final class SiteTreeMethodClassReflectionExtensionTest extends \PHPStan\Testing\TestCase
+final class SiteTreeMethodClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 {
     /** @var \PHPStan\Broker\Broker */
     private $broker;
