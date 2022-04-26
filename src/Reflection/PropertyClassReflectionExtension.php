@@ -83,32 +83,30 @@ class PropertyClassReflectionExtension implements \PHPStan\Reflection\Properties
         unset($extensions);
 
         // Handle magic properties that use 'get$Method' on main class
-        if ($classReflection->isSubclassOf(ClassHelper::ViewableData)) {
-            $classesToGetFrom = [$class];
-            if ($extensionClasses) {
-                $classesToGetFrom = array_merge($classesToGetFrom, $extensionClasses);
-            }
-            foreach ($classesToGetFrom as $getMethodPropClass) {
-                // Ignore parameters (ie. "Versioned('Stage', 'Live')")
-                $getMethodPropClass = explode('(', $getMethodPropClass, 2);
-                $getMethodPropClass = $getMethodPropClass[0];
+        $classesToGetFrom = [$class];
+        if ($extensionClasses) {
+            $classesToGetFrom = array_merge($classesToGetFrom, $extensionClasses);
+        }
+        foreach ($classesToGetFrom as $getMethodPropClass) {
+            // Ignore parameters (ie. "Versioned('Stage', 'Live')")
+            $getMethodPropClass = explode('(', $getMethodPropClass, 2);
+            $getMethodPropClass = $getMethodPropClass[0];
 
-                foreach (get_class_methods($getMethodPropClass) as $method) {
-                    if (substr($method, 0, 3) !== 'get') {
-                        continue;
-                    }
-                    $property = substr($method, 3);
-                    // todo(Jake): Better way to handle properties, if someone does '$this->myPrOp'
-                    //             it should work with 'getMyProp' since PHP method aren't case sensitive.
-                    $propInstance = new ViewableDataGetProperty($property, $classReflection);
-                    if (!isset($properties[$property])) {
-                        $properties[$property] = $propInstance;
-                    }
-                    // ie. getOwner() -> owner
-                    $propertyToLower = strtolower($property);
-                    if (!isset($properties[$propertyToLower])) {
-                        $properties[$propertyToLower] = $propInstance;
-                    }
+            foreach (get_class_methods($getMethodPropClass) as $method) {
+                if (substr($method, 0, 3) !== 'get') {
+                    continue;
+                }
+                $property = substr($method, 3);
+                // todo(Jake): Better way to handle properties, if someone does '$this->myPrOp'
+                //             it should work with 'getMyProp' since PHP method aren't case sensitive.
+                $propInstance = new ViewableDataGetProperty($property, $classReflection);
+                if (!isset($properties[$property])) {
+                    $properties[$property] = $propInstance;
+                }
+                // ie. getOwner() -> owner
+                $propertyToLower = strtolower($property);
+                if (!isset($properties[$propertyToLower])) {
+                    $properties[$propertyToLower] = $propInstance;
                 }
             }
         }

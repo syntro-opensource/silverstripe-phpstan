@@ -26,13 +26,6 @@ class CachedMethod implements MethodReflection
      */
     private $methodReflection;
 
-    /**
-     *
-     *
-     * @var \PHPStan\Reflection\ClassReflection
-     */
-    private $declaringClass;
-
     public function __construct(PhpMethodReflection $methodReflection)
     {
         // Remove '_' from front of function

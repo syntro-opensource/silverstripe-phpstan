@@ -103,4 +103,9 @@ class ComponentHasOneProperty implements PropertyReflection
     {
         return true;
     }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }

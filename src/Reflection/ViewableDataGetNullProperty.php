@@ -105,4 +105,9 @@ class ViewableDataGetNullProperty implements PropertyReflection
     {
         return true;
     }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
