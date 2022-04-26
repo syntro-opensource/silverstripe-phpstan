@@ -86,3 +86,8 @@ services:
         class: Symbiote\SilverstripePHPStan\Type\HasMethodTypeSpecifyingExtension
         tags:
             - phpstan.typeSpecifier.methodTypeSpecifyingExtension
+    # Special handling for configuration properties
+    -
+        class: Symbiote\SilverstripePHPStan\Reflection\ReadWritePropertiesExtension
+        tags:
+            - phpstan.properties.readWriteExtension
