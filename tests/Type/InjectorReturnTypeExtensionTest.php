@@ -2,96 +2,38 @@
 
 namespace Symbiote\SilverstripePHPStan\Tests\Type;
 
-use Symbiote\SilverstripePHPStan\Type\InjectorReturnTypeExtension;
-use Symbiote\SilverstripePHPStan\Type\SingletonReturnTypeExtension;
+use Symbiote\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension;
 use Symbiote\SilverstripePHPStan\ClassHelper;
-use Symbiote\SilverstripePHPStan\Tests\ResolverTest;
+use PHPStan\Testing\TypeInferenceTestCase;
 
-class InjectorReturnTypeExtensionTest extends ResolverTest
+class InjectorReturnTypeExtensionTest extends TypeInferenceTestCase
 {
-    public function dataDynamicMethodReturnTypeExtensions(): array
+    /**
+     * @return iterable<mixed>
+     */
+    public function dataFileAsserts(): iterable
     {
-        return [
-            // Injector::inst()->get(ClassHelper::File)
-            [
-                sprintf(ClassHelper::File),
-                sprintf('%s::inst()->get(%s::class)', ClassHelper::Injector, ClassHelper::File),
-            ],
-            // Test `Injector::inst()->get('Cookie_Backend)` returns `CookieJar` (uses direct value in YML, SS 3.6.X)
-            [
-                sprintf('%s', ClassHelper::CookieJar),
-                sprintf('%s::inst()->get(%s::class)', ClassHelper::Injector, ClassHelper::Cookie_Backend),
-            ],
-            // Test `Injector::inst()->get("MySQLPDODatabase")` returns `MySQLDatabase` (uses "class" array in YML, SS 3.6.X)
-            [
-                sprintf('%s', ClassHelper::MySQLDatabase),
-                sprintf('%s::inst()->get("MySQLPDODatabase")', ClassHelper::Injector),
-            ],
-        ];
+        // path to a file with actual asserts of expected types:
+        require_once(__DIR__ . '/data/injector-dynamic-method-return-types.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/injector-dynamic-method-return-types.php');
     }
 
     /**
-     * @dataProvider dataDynamicMethodReturnTypeExtensions
-     * @param string $description
-     * @param string $expression
+     * @dataProvider dataFileAsserts
      */
-    public function testDynamicMethodReturnTypeExtensions(
-        string $description,
-        string $expression
-    ) {
-        $dynamicMethodReturnTypeExtensions = [
-            new InjectorReturnTypeExtension(),
-        ];
-        $dynamicStaticMethodReturnTypeExtensions = [];
-        $this->assertTypes(
-            __DIR__ . '/data/data-object-dynamic-method-return-types.php',
-            $description,
-            $expression,
-            $dynamicMethodReturnTypeExtensions,
-            $dynamicStaticMethodReturnTypeExtensions
-        );
+    public function testFileAsserts(
+        string $assertType,
+        string $file,
+        ...$args
+    ): void {
+        $this->assertFileAsserts($assertType, $file, ...$args);
     }
 
-    public function dataFunctionReturnTypeExtensions(): array
+    public static function getAdditionalConfigFiles(): array
     {
+        // path to your project's phpstan.neon, or extension.neon in case of custom extension packages
         return [
-            // Test `singleton('File)` returns `File`
-            [
-                sprintf('%s', ClassHelper::File),
-                sprintf('singleton("%s")', ClassHelper::File),
-            ],
-            // Test `singleton("Cookie_Backend")` returns `CookieJar` (uses direct value in YML, SS 3.6.X)
-            [
-                sprintf('%s', ClassHelper::CookieJar),
-                sprintf('singleton("%s")', ClassHelper::Cookie_Backend),
-            ],
-            // Test `singleton("MySQLPDODatabase")` returns `MySQLDatabase` (uses "class" array in YML, SS 3.6.X)
-            [
-                sprintf('%s', ClassHelper::MySQLDatabase),
-                sprintf('singleton("MySQLPDODatabase")'),
-            ]
+            __DIR__ . '/../../phpstan.neon'
         ];
-    }
-
-    /**
-     * @dataProvider dataFunctionReturnTypeExtensions
-     * @param string $description
-     * @param string $expression
-     */
-    public function testFunctionReturnTypeExtensions(
-        string $description,
-        string $expression
-    ) {
-        $dynamicFunctionReturnTypeExtensions = [
-            new SingletonReturnTypeExtension(),
-        ];
-        $this->assertTypes(
-            __DIR__ . '/data/data-object-dynamic-method-return-types.php',
-            $description,
-            $expression,
-            [],
-            [],
-            $dynamicFunctionReturnTypeExtensions
-        );
     }
 }

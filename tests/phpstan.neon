@@ -5,16 +5,19 @@ parameters:
     ignoreErrors:
         # Ignore as PHPStan has no support for method_exists()
         # - '%Call to an undefined method PHPStan\\Type\\Type::getItemType()%'
-    exclude_files:
-        # Exclude bootstrap file
-        - tests/bootstrap-phpstan.php
-    excludes_analyse:
+    excludePaths:
         # Exclude test data files
+        - tests/bootstrap-phpstan.php
+        # Exclude bootstrap file
         - %currentWorkingDirectory%/tests/*/Data/*
-    autoload_directories:
+        - %currentWorkingDirectory%/tests/Type/data/*
+    scanDirectories:
         # NOTE(Jake): 2018-05-20
         #
         # If you're using the phpstan-shim, you will get errors when trying to
         # scan silverstripe-phpstan.
         #
         - %currentWorkingDirectory%/tests/Type/data/
+    scanFiles:
+        - %currentWorkingDirectory%/tests/Type/data/data-extension-dynamic-method-return-types.php
+        - %currentWorkingDirectory%/tests/Type/data/data-extension-union-dynamic-method-return-types.php
