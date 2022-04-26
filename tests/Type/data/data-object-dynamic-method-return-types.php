@@ -13,20 +13,12 @@ class Foo
 	{
 		$sitetree = new SiteTree();
         assertType(
-            sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
-            SiteTree::get()
+            sprintf('%s', ClassHelper::DBInt),
+            $sitetree->dbObject("ID")
         );
         assertType(
-            sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
-            DataObject::get(SiteTree::class)
-        );
-        // // assertType(
-        // //     ClassHelper::SiteTree,
-        // //     SiteTree::get_one()
-        // // );
-        assertType(
-            sprintf('%s', ClassHelper::SiteTree),
-            DataObject::get_one(SiteTree::class)
+            sprintf('%s', ClassHelper::HTMLText),
+            $sitetree->dbObject("Content")
         );
 		die;
 	}

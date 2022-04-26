@@ -2,20 +2,37 @@
 
 namespace Symbiote\SilverstripePHPStan\Tests\Type;
 
+use Symbiote\SilverstripePHPStan\Type\DataListReturnTypeExtension;
 use Symbiote\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension;
 use Symbiote\SilverstripePHPStan\ClassHelper;
 use PHPStan\Testing\TypeInferenceTestCase;
 
-class DataObjectGetStaticReturnTypeExtensionTest extends TypeInferenceTestCase
+class DataObjectReturnTypeExtensionTest extends TypeInferenceTestCase
 {
+    // public function dataDynamicMethodReturnTypeExtensions(): array
+    // {
+    //     return [
+    //         // Test `$sitetree->dbObject("ID")` returns `DBInt`
+    //         [
+    //             sprintf('%s', ClassHelper::DBInt),
+    //             sprintf('$sitetree->dbObject("%s")', 'ID'),
+    //         ],
+    //         // Test `$sitetree->dbObject("Content")` returns `HTMLText`
+    //         [
+    //             sprintf('%s', ClassHelper::HTMLText),
+    //             sprintf('$sitetree->dbObject("%s")', 'Content'),
+    //         ],
+    //     ];
+    // }
+
     /**
      * @return iterable<mixed>
      */
     public function dataFileAsserts(): iterable
     {
         // path to a file with actual asserts of expected types:
-        require_once(__DIR__ . '/data/data-object-static-dynamic-method-return-types.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/data-object-static-dynamic-method-return-types.php');
+        require_once(__DIR__ . '/data/data-object-dynamic-method-return-types.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/data-object-dynamic-method-return-types.php');
     }
 
     /**
