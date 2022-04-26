@@ -9,9 +9,9 @@ use function PHPStan\Testing\assertType;
 
 class Foo
 {
-	public function doFoo()
-	{
-		$sitetree = new SiteTree();
+    public function doFoo()
+    {
+        $sitetree = new SiteTree();
         assertType(
             sprintf('%s', ClassHelper::DBInt),
             $sitetree->dbObject("ID")
@@ -20,6 +20,6 @@ class Foo
             sprintf('%s', ClassHelper::HTMLText),
             $sitetree->dbObject("Content")
         );
-		die;
-	}
+        die;
+    }
 }

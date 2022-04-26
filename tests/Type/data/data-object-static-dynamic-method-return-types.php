@@ -11,9 +11,9 @@ use function PHPStan\Testing\assertType;
 
 class Foo
 {
-	public function doFoo()
-	{
-		$sitetree = new SiteTree();
+    public function doFoo()
+    {
+        $sitetree = new SiteTree();
         assertType(
             sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
             SiteTree::get()
@@ -39,6 +39,6 @@ class Foo
         //     sprintf('%s', ClassHelper::HTMLText),
         //     DataObject::create_field(sprintf('%s', ClassHelper::HTMLText)::class)
         // );
-		die;
-	}
+        die;
+    }
 }

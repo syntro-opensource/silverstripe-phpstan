@@ -25,8 +25,7 @@ class DataObjectGetStaticReturnTypeExtensionTest extends TypeInferenceTestCase
         string $assertType,
         string $file,
         ...$args
-    ): void
-    {
+    ): void {
         $this->assertFileAsserts($assertType, $file, ...$args);
     }
 

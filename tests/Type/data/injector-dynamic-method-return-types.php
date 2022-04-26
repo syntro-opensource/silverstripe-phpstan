@@ -14,9 +14,9 @@ use function PHPStan\Testing\assertType;
 
 class Foo
 {
-	public function doFoo()
-	{
-		$sitetree = new SiteTree();
+    public function doFoo()
+    {
+        $sitetree = new SiteTree();
         assertType(
             File::class,
             Injector::inst()->get(File::class)
@@ -42,6 +42,6 @@ class Foo
             MySQLDatabase::class,
             singleton("MySQLPDODatabase")
         );
-		die;
-	}
+        die;
+    }
 }

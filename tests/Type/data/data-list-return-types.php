@@ -53,7 +53,9 @@ class Foo
         );
         assertType(
             sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
-            $siteTreeDataList->alterDataQuery(function($query){ $query->reverseSort(); })
+            $siteTreeDataList->alterDataQuery(function ($query) {
+                $query->reverseSort();
+            })
         );
         assertType(
             sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),

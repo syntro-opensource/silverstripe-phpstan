@@ -1,5 +1,5 @@
 <?php
-
+// @codingStandardsIgnoreStart
 namespace DataExtensionUnionDynamicMethodReturnTypesNamespace;
 
 // SilverStripe
@@ -9,9 +9,9 @@ use function PHPStan\Testing\assertType;
 
 class FooDataExtension extends DataExtension
 {
-	public function doFoo()
-	{
-		$owner = $this->getOwner();
+    public function doFoo()
+    {
+        $owner = $this->getOwner();
         assertType(
             sprintf(
                 '%s|%s',
@@ -20,8 +20,8 @@ class FooDataExtension extends DataExtension
             ),
             $this->getOwner()
         );
-		die;
-	}
+        die;
+    }
 }
 
 class Foo extends DataObject
@@ -31,3 +31,4 @@ class Foo extends DataObject
 class FooTwo extends DataObject
 {
 }
+// @codingStandardsIgnoreEnd
