@@ -101,7 +101,7 @@ class DataListReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTy
             case 'removeMany':
             case 'removeByFilter':
             case 'removeAll':
-                return $type;
+                return new DataListType($type, $type->getItemType());
 
             case 'getIDList':
                 return new ArrayType(new IntegerType, new IntegerType);
