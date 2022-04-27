@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Type;
+namespace Syntro\SilverstripePHPStan\Type;
 
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;

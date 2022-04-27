@@ -1,6 +1,6 @@
 <?php
 
-namespace Symbiote\SilverstripePHPStan\Reflection;
+namespace Syntro\SilverstripePHPStan\Reflection;
 
 use PHPStan\Reflection\PropertyReflection;
 use SilverStripe\Core\Config\Configurable;

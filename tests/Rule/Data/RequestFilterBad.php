@@ -1,6 +1,6 @@
 <?php
 
-namespace Symbiote\SilverstripePHPStan\Tests\Rule\Data;
+namespace Syntro\SilverstripePHPStan\Tests\Rule\Data;
 
 // SilverStripe
 use SilverStripe\Control\RequestFilter;

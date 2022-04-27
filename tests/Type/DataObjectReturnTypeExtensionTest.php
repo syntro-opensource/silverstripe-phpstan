@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Tests\Type;
+namespace Syntro\SilverstripePHPStan\Tests\Type;
 
-use Symbiote\SilverstripePHPStan\Type\DataListReturnTypeExtension;
-use Symbiote\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension;
-use Symbiote\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\Type\DataListReturnTypeExtension;
+use Syntro\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension;
+use Syntro\SilverstripePHPStan\ClassHelper;
 use PHPStan\Testing\TypeInferenceTestCase;
 
 class DataObjectReturnTypeExtensionTest extends TypeInferenceTestCase

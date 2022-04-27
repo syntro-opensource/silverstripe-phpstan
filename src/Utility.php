@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan;
+namespace Syntro\SilverstripePHPStan;
 
 use Exception;
 use PhpParser\NodeAbstract;

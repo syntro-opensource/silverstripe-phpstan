@@ -37,10 +37,16 @@ composer require --dev syntro/silverstripe-phpstan
 * [Advanced Usage](docs/en/advanced-usage.md)
 * [License](LICENSE.md)
 
-## Known Limitations
+## Known Limitations / Gotchas
 
+* PHPStan checks if properties are actually initialized, read and written. This
+however does not apply to Silverstripes [configuration properties](https://docs.silverstripe.org/en/4/developer_guides/configuration/configuration/#configuration-properties).
+In order to tell PHPStan which of your properties are configuration values, you have
+to use the [`@config` docblock](https://docs.silverstripe.org/en/4/developer_guides/configuration/configuration/#configuration-properties).
 * The type of the `owner` property can't be reasoned about for extensions. You must use `getOwner()`. Related Issues: [#1043](https://github.com/phpstan/phpstan/issues/1043) and [#1044](https://github.com/phpstan/phpstan/issues/1044)
 
 ## Credits
-
-* [Symbiote & Contributors](https://github.com/symbiote/silverstripe-phpstan) For running this module up to PHPStan 0.11
+This is a fork of the original `symbiote/silverstripe-phpstan` maintained by
+[Symbiote & Contributors](https://github.com/symbiote/silverstripe-phpstan).
+We have created this, as the original repository seems to be no longer actively
+maintained.

@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Type;
+namespace Syntro\SilverstripePHPStan\Type;
 
 use Exception;
-use Symbiote\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\ClassHelper;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Analyser\Scope;
@@ -12,7 +12,7 @@ use PHPStan\Type\ArrayType;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\IterableType;
-use Symbiote\SilverstripePHPStan\Utility;
+use Syntro\SilverstripePHPStan\Utility;
 
 class DataListReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTypeExtension
 {
