@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Reflection;
+namespace Syntro\SilverstripePHPStan\Reflection;
 
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;

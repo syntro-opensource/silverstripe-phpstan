@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Type;
+namespace Syntro\SilverstripePHPStan\Type;
 
-use Symbiote\SilverstripePHPStan\ClassHelper;
-use Symbiote\SilverstripePHPStan\Utility;
+use Syntro\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\Utility;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;

@@ -17,43 +17,43 @@ services:
     # This rule will throw an error if you `return false` from a RequestFilter::preRequest() method
     # as in SilverStripe 3.X, this throws an uncaught exception in the site.
     -
-        class: Symbiote\SilverstripePHPStan\Rule\RequestFilterPreRequestRule
+        class: Syntro\SilverstripePHPStan\Rule\RequestFilterPreRequestRule
         tags:
             - phpstan.rules.rule
     # This adds additional methods from SilverStripe extensions, as well as determining proper
     # types when has_one() magic methods.
     -
-        class: Symbiote\SilverstripePHPStan\Reflection\MethodClassReflectionExtension
+        class: Syntro\SilverstripePHPStan\Reflection\MethodClassReflectionExtension
         tags:
             - phpstan.broker.methodsClassReflectionExtension
     # This adds additional properties from 'db', 'has_one' and other config fields to
     # determine what types are returned for magic __get's
     -
-        class: Symbiote\SilverstripePHPStan\Reflection\PropertyClassReflectionExtension
+        class: Syntro\SilverstripePHPStan\Reflection\PropertyClassReflectionExtension
         tags:
             - phpstan.broker.propertiesClassReflectionExtension
     # This adds additional type info to `DataObject::get()` so that it knows what class
     # while be returned when iterating.
     -
-        class: Symbiote\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension
+        class: Syntro\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension
         tags:
             - phpstan.broker.dynamicStaticMethodReturnTypeExtension
     # This allows `singleton("File")` calls to understand the exact classes being returned
     # by using your configuration. (ie. uses Injector information if it's set)
     -
-        class: Symbiote\SilverstripePHPStan\Type\SingletonReturnTypeExtension
+        class: Syntro\SilverstripePHPStan\Type\SingletonReturnTypeExtension
         tags:
             - phpstan.broker.dynamicFunctionReturnTypeExtension
     # This allows `Injector::inst()->get("File")` calls to understand the exact classes being returned
     # by using your configuration. (ie. uses Injector information if it's set)
     -
-        class: Symbiote\SilverstripePHPStan\Type\InjectorReturnTypeExtension
+        class: Syntro\SilverstripePHPStan\Type\InjectorReturnTypeExtension
         tags:
             - phpstan.broker.dynamicMethodReturnTypeExtension
     # This allows `$this->getOwner()` to understand the possible types that it could
     # return by seeing what classes are using that extension currently.
     -
-        class: Symbiote\SilverstripePHPStan\Type\ExtensionReturnTypeExtension
+        class: Syntro\SilverstripePHPStan\Type\ExtensionReturnTypeExtension
         tags:
             - phpstan.broker.dynamicMethodReturnTypeExtension
     # This makes a DataList keep it's current type information as-is when calling
@@ -62,34 +62,34 @@ services:
     # This will also allow "first"/"last" calls and similar to return the correct type.
     #
     -
-        class: Symbiote\SilverstripePHPStan\Type\DataListReturnTypeExtension
+        class: Syntro\SilverstripePHPStan\Type\DataListReturnTypeExtension
         tags:
             - phpstan.broker.dynamicMethodReturnTypeExtension
     # This makes calls to `dbObject` and `newClassInstance` return the correct type info
     -
-        class: Symbiote\SilverstripePHPStan\Type\DataObjectReturnTypeExtension
+        class: Syntro\SilverstripePHPStan\Type\DataObjectReturnTypeExtension
         tags:
             - phpstan.broker.dynamicMethodReturnTypeExtension
 
     -
-        class: Symbiote\SilverstripePHPStan\Type\FormFieldReturnTypeExtension
+        class: Syntro\SilverstripePHPStan\Type\FormFieldReturnTypeExtension
         tags:
             - phpstan.broker.dynamicMethodReturnTypeExtension
 
     # This makes calls to `DBField::create_field('HTMLText', $value)` return the correct type info
     # ie. The injectored type of the first parameter
     -
-        class: Symbiote\SilverstripePHPStan\Type\DBFieldStaticReturnTypeExtension
+        class: Syntro\SilverstripePHPStan\Type\DBFieldStaticReturnTypeExtension
         tags:
             - phpstan.broker.dynamicStaticMethodReturnTypeExtension
 
     # Special handling for ->hasMethod() checks
     -
-        class: Symbiote\SilverstripePHPStan\Type\HasMethodTypeSpecifyingExtension
+        class: Syntro\SilverstripePHPStan\Type\HasMethodTypeSpecifyingExtension
         tags:
             - phpstan.typeSpecifier.methodTypeSpecifyingExtension
     # Special handling for configuration properties
     -
-        class: Symbiote\SilverstripePHPStan\Reflection\ReadWritePropertiesExtension
+        class: Syntro\SilverstripePHPStan\Reflection\ReadWritePropertiesExtension
         tags:
             - phpstan.properties.readWriteExtension

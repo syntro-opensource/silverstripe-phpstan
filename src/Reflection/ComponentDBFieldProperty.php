@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Reflection;
+namespace Syntro\SilverstripePHPStan\Reflection;
 
-use Symbiote\SilverstripePHPStan\Utility;
+use Syntro\SilverstripePHPStan\Utility;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Type\Type;

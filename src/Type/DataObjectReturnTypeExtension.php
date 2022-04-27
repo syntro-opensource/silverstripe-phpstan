@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Type;
+namespace Syntro\SilverstripePHPStan\Type;
 
 use Exception;
-use Symbiote\SilverstripePHPStan\ClassHelper;
-use Symbiote\SilverstripePHPStan\ConfigHelper;
-use Symbiote\SilverstripePHPStan\Utility;
+use Syntro\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\ConfigHelper;
+use Syntro\SilverstripePHPStan\Utility;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Broker\Broker;
 use PhpParser\Node\Expr\MethodCall;

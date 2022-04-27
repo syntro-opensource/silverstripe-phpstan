@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Type;
+namespace Syntro\SilverstripePHPStan\Type;
 
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;

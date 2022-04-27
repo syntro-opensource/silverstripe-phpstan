@@ -9,7 +9,7 @@ use SilverStripe\Assets\File;
 use SilverStripe\Control\Cookie_Backend;
 use SilverStripe\Control\CookieJar;
 use SilverStripe\ORM\Connect\MySQLDatabase;
-use Symbiote\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\ClassHelper;
 use function PHPStan\Testing\assertType;
 
 class Foo

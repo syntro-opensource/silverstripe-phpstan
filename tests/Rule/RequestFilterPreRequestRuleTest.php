@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Tests\Rule;
+namespace Syntro\SilverstripePHPStan\Tests\Rule;
 
-use Symbiote\SilverstripePHPStan\Rule\RequestFilterPreRequestRule;
-use Symbiote\SilverstripePHPStan\Tests\ResolverTest;
+use Syntro\SilverstripePHPStan\Rule\RequestFilterPreRequestRule;
+use Syntro\SilverstripePHPStan\Tests\ResolverTest;
 use PHPStan\Rules\Rule;
 
 class RequestFilterPreRequestRuleTest extends \PHPStan\Testing\RuleTestCase

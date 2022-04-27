@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Rule;
+namespace Syntro\SilverstripePHPStan\Rule;
 
-use Symbiote\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\ClassHelper;
 use PhpParser\Node\Stmt\Return_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Type\Constant\ConstantBooleanType;
