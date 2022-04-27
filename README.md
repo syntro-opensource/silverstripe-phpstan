@@ -46,5 +46,7 @@ to use the [`@config` docblock](https://docs.silverstripe.org/en/4/developer_gui
 * The type of the `owner` property can't be reasoned about for extensions. You must use `getOwner()`. Related Issues: [#1043](https://github.com/phpstan/phpstan/issues/1043) and [#1044](https://github.com/phpstan/phpstan/issues/1044)
 
 ## Credits
-
-* [Symbiote & Contributors](https://github.com/symbiote/silverstripe-phpstan) For running this module up to PHPStan 0.11
+This is a fork of the original `symbiote/silverstripe-phpstan` maintained by
+[Symbiote & Contributors](https://github.com/symbiote/silverstripe-phpstan).
+We have created this, as the original repository seems to be no longer actively
+maintained.
