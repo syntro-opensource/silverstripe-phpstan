@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Type;
+namespace Syntro\SilverstripePHPStan\Type;
 
-use Symbiote\SilverstripePHPStan\ClassHelper;
-use Symbiote\SilverstripePHPStan\Utility;
+use Syntro\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\Utility;
 use PHPStan\Type\Type;
 use PHPStan\Type\DynamicFunctionReturnTypeExtension;
 use PhpParser\Node\Expr\FuncCall;

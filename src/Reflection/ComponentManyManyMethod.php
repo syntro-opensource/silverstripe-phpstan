@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Reflection;
+namespace Syntro\SilverstripePHPStan\Reflection;
 
-use Symbiote\SilverstripePHPStan\ClassHelper;
-use Symbiote\SilverstripePHPStan\Type\DataListType;
+use Syntro\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\Type\DataListType;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\FunctionVariant;

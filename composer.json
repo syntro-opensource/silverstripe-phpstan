@@ -40,8 +40,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Symbiote\\SilverstripePHPStan\\": "src/",
-            "Symbiote\\SilverstripePHPStan\\Tests\\": "tests/"
+            "Syntro\\SilverstripePHPStan\\": "src/",
+            "Syntro\\SilverstripePHPStan\\Tests\\": "tests/"
         }
     },
     "extra": {

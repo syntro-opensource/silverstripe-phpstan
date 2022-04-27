@@ -3,7 +3,7 @@
 namespace DataListDynamicMethodReturnTypesNamespace;
 
 use SilverStripe\CMS\Model\SiteTree;
-use Symbiote\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\ClassHelper;
 use function PHPStan\Testing\assertType;
 
 class Foo

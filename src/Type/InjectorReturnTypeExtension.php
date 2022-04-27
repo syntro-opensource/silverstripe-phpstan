@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace Symbiote\SilverstripePHPStan\Type;
+namespace Syntro\SilverstripePHPStan\Type;
 
 use LogicException;
-use Symbiote\SilverstripePHPStan\ClassHelper;
-use Symbiote\SilverstripePHPStan\Utility;
+use Syntro\SilverstripePHPStan\ClassHelper;
+use Syntro\SilverstripePHPStan\Utility;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Reflection\MethodReflection;
