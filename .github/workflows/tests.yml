@@ -80,15 +80,15 @@ jobs:
           composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
       - name: run phpunit
         run: vendor/bin/phpunit -d memory_limit=1G -c "tests/phpunit.xml" tests/
-      - name: generate coverage
-        run: phpdbg -qrr vendor/bin/phpunit -d memory_limit=4G --process-isolation --coverage-clover=coverage.xml -c "tests/phpunit.xml" tests/
-        if: ${{ matrix.php == '7.4' && matrix.recipe == '4.x-dev' }}
-      - name: submit coverage
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml
-        if: ${{ matrix.php == '7.4' && matrix.recipe == '4.x-dev' }}
+      # - name: generate coverage
+      #   run: phpdbg -qrr vendor/bin/phpunit -d memory_limit=4G --process-isolation --coverage-clover=coverage.xml -c "tests/phpunit.xml" tests/
+      #   if: ${{ matrix.php == '7.4' && matrix.recipe == '4.x-dev' }}
+      # - name: submit coverage
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     files: ./coverage.xml
+      #   if: ${{ matrix.php == '7.4' && matrix.recipe == '4.x-dev' }}
   phpstan:
     name: 🔍 PHPStan
     runs-on: ubuntu-latest
