@@ -13,7 +13,7 @@ class ReadWriteConfigPropertiesRuleTest extends \PHPStan\Testing\RuleTestCase
     protected function getRule(): Rule
     {
         return new ReadWriteConfigPropertiesRule(
-            new ReadWriteConfigPropertiesRule(new ReadWritePropertiesExtension()),
+            new DirectReadWritePropertiesExtensionProvider(new ReadWritePropertiesExtension()),
             [],
             [],
             true
