@@ -5,11 +5,17 @@ namespace Syntro\SilverstripePHPStan\Tests\Rule;
 class DirectReadWritePropertiesExtensionProvider implements ReadWritePropertiesExtensionProvider
 {
 
+    /**
+     * @var array
+     */
+    private $extensions
+
 	/**
 	 * @param ReadWritePropertiesExtension[] $extensions
 	 */
-	public function __construct(private array $extensions)
+	public function __construct(array $extensions)
 	{
+        $this->extensions = $extensions;
 	}
 
 	/**
