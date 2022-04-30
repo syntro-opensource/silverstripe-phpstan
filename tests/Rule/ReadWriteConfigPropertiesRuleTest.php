@@ -26,6 +26,7 @@ class ReadWriteConfigPropertiesRuleTest extends \PHPStan\Testing\RuleTestCase
             [
                 'Have you forgotten to add "@config" for the property $this_should_be_config of the configurable class Syntro\SilverstripePHPStan\Tests\Rule\Data\Foo?',
                 11,
+                'See: https://docs.silverstripe.org/en/4/developer_guides/configuration/configuration/',
             ],
         ]);
     }

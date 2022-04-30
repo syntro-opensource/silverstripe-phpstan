@@ -4,18 +4,18 @@ namespace Syntro\SilverstripePHPStan\Tests\Rule;
 
 use PHPStan\Rules\Properties\ReadWritePropertiesExtensionProvider;
 
-class DirectReadWritePropertiesExtensionProvider implements ReadWritePropertiesExtensionProvider
+class DirectReadWritePropertiesExtensionProvider implements ReadWritePropertiesExtensionProvider /* @phpstan-ignore-line */
 {
 
     /**
-     * @var array
+     * @var ReadWritePropertiesExtension[]
      */
     private $extensions;
 
     /**
      * @param ReadWritePropertiesExtension[] $extensions
      */
-    public function __construct(array $extensions)
+    public function __construct( $extensions)
     {
         $this->extensions = $extensions;
     }
@@ -23,7 +23,7 @@ class DirectReadWritePropertiesExtensionProvider implements ReadWritePropertiesE
     /**
      * @return ReadWritePropertiesExtension[]
      */
-    public function getExtensions(): array
+    public function getExtensions()
     {
         return $this->extensions;
     }
