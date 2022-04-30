@@ -2,6 +2,8 @@
 
 namespace Syntro\SilverstripePHPStan\Tests\Rule;
 
+use PHPStan\Rules\Properties\ReadWritePropertiesExtensionProvider;
+
 class DirectReadWritePropertiesExtensionProvider implements ReadWritePropertiesExtensionProvider
 {
 
