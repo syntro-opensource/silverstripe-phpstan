@@ -12,20 +12,20 @@ class DirectReadWritePropertiesExtensionProvider implements ReadWritePropertiesE
      */
     private $extensions;
 
-	/**
-	 * @param ReadWritePropertiesExtension[] $extensions
-	 */
-	public function __construct(array $extensions)
-	{
+    /**
+     * @param ReadWritePropertiesExtension[] $extensions
+     */
+    public function __construct(array $extensions)
+    {
         $this->extensions = $extensions;
-	}
+    }
 
-	/**
-	 * @return ReadWritePropertiesExtension[]
-	 */
-	public function getExtensions(): array
-	{
-		return $this->extensions;
-	}
+    /**
+     * @return ReadWritePropertiesExtension[]
+     */
+    public function getExtensions(): array
+    {
+        return $this->extensions;
+    }
 
 }
