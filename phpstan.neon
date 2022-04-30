@@ -88,6 +88,15 @@ services:
         class: Syntro\SilverstripePHPStan\Type\HasMethodTypeSpecifyingExtension
         tags:
             - phpstan.typeSpecifier.methodTypeSpecifyingExtension
+    # Rule informing the user to add the @config docblock
+    -
+        class: Syntro\SilverstripePHPStan\Rule\ReadWriteConfigPropertiesRule
+        arguments:
+            alwaysWrittenTags: %propertyAlwaysWrittenTags%
+            alwaysReadTags: %propertyAlwaysReadTags%
+            checkUninitializedProperties: %checkUninitializedProperties%
+        tags:
+            - phpstan.rules.rule
     # Special handling for configuration properties
     -
         class: Syntro\SilverstripePHPStan\Reflection\ReadWritePropertiesExtension
