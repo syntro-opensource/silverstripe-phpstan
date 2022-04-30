@@ -4,6 +4,7 @@ namespace Syntro\SilverstripePHPStan\Reflection;
 
 use PHPStan\Reflection\PropertyReflection;
 use SilverStripe\Core\Config\Configurable;
+use SilverStripe\Core\Extension;
 
 /**
  * Adds information about configuration properties, which are always read,
@@ -77,6 +78,7 @@ class ReadWritePropertiesExtension implements \PHPStan\Rules\Properties\ReadWrit
      */
     public function classUsesConfigTrait(PropertyReflection $property): bool
     {
-        return $property->getDeclaringClass()->hasTraitUse(Configurable::class);
+        $classReflection = $property->getDeclaringClass();
+        return $classReflection->hasTraitUse(Configurable::class)  || $classReflection->isSubclassOf(Extension::class);
     }
 }
