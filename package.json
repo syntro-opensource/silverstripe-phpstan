@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "release": "git fetch && git-chglog -o CHANGELOG.md $([[ ! -z $npm_config_next ]] && echo \"--next-tag $npm_config_next\" )"
+    "release": "git fetch && git-chglog -o CHANGELOG.md $([[ ! -z $npm_config_next ]] && echo \"--next-tag $npm_config_next\" ) 0.0.0.."
   }
 }
