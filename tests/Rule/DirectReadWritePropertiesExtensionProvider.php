@@ -3,6 +3,7 @@
 namespace Syntro\SilverstripePHPStan\Tests\Rule;
 
 use PHPStan\Rules\Properties\ReadWritePropertiesExtensionProvider;
+use PHPStan\Rules\Properties\ReadWritePropertiesExtension;
 
 class DirectReadWritePropertiesExtensionProvider implements ReadWritePropertiesExtensionProvider /* @phpstan-ignore-line */
 {
