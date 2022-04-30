@@ -4,7 +4,7 @@ namespace Syntro\SilverstripePHPStan\Tests\Rule;
 
 use Syntro\SilverstripePHPStan\Rule\ReadWriteConfigPropertiesRule;
 use Syntro\SilverstripePHPStan\Reflection\ReadWritePropertiesExtension;
-use PHPStan\Rules\Properties\DirectReadWritePropertiesExtensionProvider;
+use Syntro\SilverstripePHPStan\Tests\Rule\DirectReadWritePropertiesExtensionProvider;
 use PHPStan\Rules\Rule;
 
 class ReadWriteConfigPropertiesRuleTest extends \PHPStan\Testing\RuleTestCase
@@ -13,7 +13,7 @@ class ReadWriteConfigPropertiesRuleTest extends \PHPStan\Testing\RuleTestCase
     protected function getRule(): Rule
     {
         return new ReadWriteConfigPropertiesRule(
-            new DirectReadWritePropertiesExtensionProvider(new ReadWritePropertiesExtension()),
+            new DirectReadWritePropertiesExtensionProvider([new ReadWritePropertiesExtension()]),
             [],
             [],
             true
