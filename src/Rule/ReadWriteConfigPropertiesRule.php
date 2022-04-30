@@ -19,17 +19,17 @@ use SilverStripe\Core\Extension;
  * Adds a rule to add a hint to never read, never written or unused properties,
  * instructing the user to add an "@config" docblock if necessary
  */
-class ReadWriteConfigPropertiesRule extends UnusedPrivatePropertyRule
+class ReadWriteConfigPropertiesRule extends UnusedPrivatePropertyRule /* @phpstan-ignore-line */
 {
 
     public function processNode(Node $node, Scope $scope): array
     {
         $classReflection = $scope->getClassReflection();
         if ($classReflection->hasTraitUse(Configurable::class) || $classReflection->isSubclassOf(Extension::class)) {
-            $errors = parent::processNode($node, $scope);
+            $errors = parent::processNode($node, $scope); /* @phpstan-ignore-line */
             $hints = [];
             foreach ($errors as $error) {
-                $message = $error->getMessage();
+                $message = $error->getMessage(); /* @phpstan-ignore-line */
                 if (strpos($message, 'Static') !== 0 || strpos($message, 'never written, only read') !== false) {
                     // NOTE(mleutenegger): 2022-04-30
                     // In this case, the property wasn't static or the property
