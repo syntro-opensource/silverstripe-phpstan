@@ -5,7 +5,6 @@ namespace Syntro\SilverstripePHPStan\Tests\Rule;
 use Syntro\SilverstripePHPStan\Rule\ReadWriteConfigPropertiesRule;
 use Syntro\SilverstripePHPStan\Reflection\ReadWritePropertiesExtension;
 use PHPStan\Rules\Properties\DirectReadWritePropertiesExtensionProvider;
-use PHPStan\Rules\Properties\DirectReadWritePropertiesExtensionProvider;
 use PHPStan\Rules\Rule;
 
 class ReadWriteConfigPropertiesRuleTest extends \PHPStan\Testing\RuleTestCase

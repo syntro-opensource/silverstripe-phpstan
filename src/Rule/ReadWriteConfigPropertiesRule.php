@@ -28,7 +28,7 @@ class ReadWriteConfigPropertiesRule extends UnusedPrivatePropertyRule /* @phpsta
         if ($classReflection->hasTraitUse(Configurable::class) || $classReflection->isSubclassOf(Extension::class)) {
             $errors = parent::processNode($node, $scope); /* @phpstan-ignore-line */
             $hints = [];
-            /** @var \PHPStan\Rules\RuleError $error */
+            /** @var \PHPStan\Rules\RuleErrors\RuleError11 $error */
             foreach ($errors as $error) {
                 $message = $error->getMessage(); /* @phpstan-ignore-line */
                 if (strpos($message, 'Static') !== 0 || strpos($message, 'never written, only read') !== false) {
@@ -44,7 +44,7 @@ class ReadWriteConfigPropertiesRule extends UnusedPrivatePropertyRule /* @phpsta
                 $nameFound = preg_match("/(\S+)::(\S+)/", $message, $names);
                 if ($nameFound) {
                     $tip = sprintf('See: %s', 'https://docs.silverstripe.org/en/4/developer_guides/configuration/configuration/');
-                    $hints[] = RuleErrorBuilder::message(sprintf('Have you forgotten to add "@config" for the property %s of the configurable class %s?', $names[2],$names[1]))->line($error->line)->tip($tip)->build();
+                    $hints[] = RuleErrorBuilder::message(sprintf('Have you forgotten to add "@config" for the property %s of the configurable class %s?', $names[2], $names[1]))->line($error->line)->tip($tip)->build();
                 }
             }
             return $hints;
