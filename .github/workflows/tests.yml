@@ -32,6 +32,7 @@ jobs:
     with:
       phpunit: true
       phpstan: true
+      phpstan_bootstrap: tests/bootstrap-phpstan.php
       phpcs: true
   # silverstripe-client:
   #   name: 📦 Client Testsuite
