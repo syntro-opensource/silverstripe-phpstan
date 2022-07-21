@@ -31,6 +31,7 @@ jobs:
     uses: syntro-opensource/workflows/.github/workflows/silverstripe-module.yml@master
     with:
       phpunit: true
+      phpunit_config_file: tests/phpunit.xml
       phpstan: true
       phpstan_bootstrap: tests/bootstrap-phpstan.php
       phpcs: true
