@@ -33,6 +33,7 @@ jobs:
       phpunit: true
       phpunit_config_file: tests/phpunit.xml
       phpstan: true
+      phpstan_config: tests/phpstan.neon
       phpstan_bootstrap: tests/bootstrap-phpstan.php
       phpcs: true
   # silverstripe-client:
