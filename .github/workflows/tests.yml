@@ -24,118 +24,27 @@ on:
       - '**.md'
     branches:
       - master
-env:
-  DB: MYSQL
-  PDO: 1
-  SS_ENVIRONMENT_TYPE: "dev"
+
 jobs:
-  phpunit:
-    name: 🧩 PHPUnit
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php:
-          - '7.4'
-          - '8.0'
-        recipe:
-          - 4.3.*
-          - 4.x-dev
-        exclude:
-          - php: '8.0'
-            recipe: 4.3.*
-    container: brettt89/silverstripe-web:${{ matrix.php }}-apache
-    services:
-      database:
-        image: mysql:5.7
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    env:
-      SS_DEFAULT_ADMIN_USERNAME: admin
-      SS_DEFAULT_ADMIN_PASSWORD: admin
-      SS_DATABASE_SERVER: database
-      SS_DATABASE_NAME: ss_default_${{ matrix.php }}
-      SS_DATABASE_USERNAME: root
-      SS_DATABASE_PASSWORD: ''
-      SS_ENVIRONMENT_TYPE: dev
-      RECIPE_CMS_VERSION: ${{ matrix.recipe }}
-    steps:
-      - name: Install Composer
-        run: |
-          curl \
-            -sS https://getcomposer.org/installer \
-            | php && \
-            mv -f composer.phar /usr/local/bin/composer
-      - name: Install git
-        run: |
-          apt update && apt-get install git -yqq
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: install dependencies
-        run: |
-          composer require --no-update silverstripe/recipe-cms:$RECIPE_CMS_VERSION &&\
-          composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
-      - name: run phpunit
-        run: vendor/bin/phpunit -d memory_limit=1G -c "tests/phpunit.xml" tests/
-      # - name: generate coverage
-      #   run: phpdbg -qrr vendor/bin/phpunit -d memory_limit=4G --process-isolation --coverage-clover=coverage.xml -c "tests/phpunit.xml" tests/
-      #   if: ${{ matrix.php == '7.4' && matrix.recipe == '4.x-dev' }}
-      # - name: submit coverage
-      #   uses: codecov/codecov-action@v2
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     files: ./coverage.xml
-      #   if: ${{ matrix.php == '7.4' && matrix.recipe == '4.x-dev' }}
-  phpstan:
-    name: 🔍 PHPStan
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php:
-          - '7.4'
-          - '8.0'
-        recipe:
-          - 4.3.*
-          - 4.x-dev
-        exclude:
-          - php: '8.0'
-            recipe: 4.3.*
-    container: brettt89/silverstripe-web:7.4-apache
-    env:
-      RECIPE_CMS_VERSION: ${{ matrix.recipe }}
-    steps:
-      - name: Install Composer
-        run: |
-          curl \
-            -sS https://getcomposer.org/installer \
-            | php && \
-            mv -f composer.phar /usr/local/bin/composer
-      - name: Install git
-        run: |
-          apt update && apt-get install git -yqq
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: install dependencies
-        run: |
-          composer require --no-update silverstripe/recipe-cms:$RECIPE_CMS_VERSION &&\
-          composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
-      - name: run phpstan
-        run: vendor/bin/phpstan analyse src/ tests/ -c "tests/phpstan.neon" -a "tests/bootstrap-phpstan.php" --level 4 --memory-limit 1G
-  phpcs:
-    name: 🔮 PHPcs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: lint source
-        uses: chindit/actions-phpcs@master
-        with:
-          dir: src/
-      - name: lint tests
-        uses: chindit/actions-phpcs@master
-        with:
-          dir: tests/
+  silverstripe-module:
+    name: 🧰 Silverstripe Module Testsuite
+    uses: syntro-opensource/workflows/.github/workflows/silverstripe-module.yml@master
+    with:
+      phpunit: true
+      phpunit_config_file: tests/phpunit.xml
+      phpstan: true
+      phpstan_config: tests/phpstan.neon
+      phpstan_bootstrap: tests/bootstrap-phpstan.php
+      phpcs: true
+  # silverstripe-client:
+  #   name: 📦 Client Testsuite
+  #   uses: syntro-opensource/workflows/.github/workflows/client.yml@master
+  #   with:
+  #     eslint: true
+  #     eslint_dir: client/src/seo-field/
+  #     eslint_configfile: client/src/seo-field/.eslintrc
+  #     eslint_ext:
+  #     eslint_max-warnings:
+  #     stylelint: true
+  #     stylelint_glob: client/src/seo-field/**/*.scss
+  #     stylelint_max-warnings:

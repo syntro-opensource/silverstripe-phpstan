@@ -49,6 +49,13 @@
             "dev-master": "1.x-dev"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/vendor-plugin": true,
+            "silverstripe/recipe-plugin": true
+        }
+    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }
