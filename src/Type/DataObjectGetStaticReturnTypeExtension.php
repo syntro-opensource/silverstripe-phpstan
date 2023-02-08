@@ -14,6 +14,8 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\Type;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\TypeCombinator;
+use PHPStan\Type\UnionType;
 
 class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicStaticMethodReturnTypeExtension
 {
@@ -56,6 +58,14 @@ class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicSta
                     $type = $scope->getType($methodCall->class);
                     if ($type instanceof ConstantStringType) {
                         return new DataListType(ClassHelper::DataList, new ObjectType($type->getValue()));
+                    } elseif ($type instanceof UnionType) {
+                        $types = array_map(function ($type) {
+                            if ($type instanceof ConstantStringType) {
+                                return new ObjectType($type->getValue());
+                            }
+                            return $type;
+                        }, $type->getTypes());
+                        return new DataListType(ClassHelper::DataList, TypeCombinator::union(...$types));
                     } else {
                         throw new Exception(sprintf("Variable %s can't be resolved to a class name. Try adding a docblock to the variable to describe it's type.", $methodCall->class->name));
                     }
