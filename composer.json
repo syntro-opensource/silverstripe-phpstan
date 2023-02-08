@@ -35,8 +35,8 @@
     "scripts": {
         "phpcs": "phpcs -n -l src/ src/Reflection/ src/Rule/ src/Type tests/ tests/Reflection/ tests/Rule/ tests/Type/",
         "phpcbf": "phpcbf -n src/ src/Reflection/ src/Rule/ src/Type tests/ tests/Reflection/ tests/Rule/ tests/Type/",
-        "phpunit": "bash ../../../vendor/bin/phpunit -c \"tests/phpunit.xml\" tests/",
-        "phpstan": "bash ../../../vendor/bin/phpstan analyse src/ tests/ -c \"tests/phpstan.neon\" -a \"tests/bootstrap-phpstan.php\" --level 4"
+        "phpunit": "phpunit -c \"tests/phpunit.xml\" tests/",
+        "phpstan": "phpstan analyse src/ tests/ -c \"tests/phpstan.neon\" -a \"tests/bootstrap-phpstan.php\" --level 4",
     },
     "autoload": {
         "psr-4": {
