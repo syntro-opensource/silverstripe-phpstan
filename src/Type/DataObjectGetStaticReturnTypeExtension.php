@@ -67,7 +67,8 @@ class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicSta
                         }, $type->getTypes());
                         return new DataListType(ClassHelper::DataList, TypeCombinator::union(...$types));
                     } else {
-                        throw new Exception(sprintf("Variable %s can't be resolved to a class name. Try adding a docblock to the variable to describe it's type.", $methodCall->class->name));
+                        // Fallback..
+                        return new DataListType(ClassHelper::DataList, new ObjectType(ClassHelper::DataObject));
                     }
                 }
 
