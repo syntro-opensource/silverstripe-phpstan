@@ -4,26 +4,28 @@ on:
     paths-ignore:
       - .chglog/**
       - .github/**
-      - '!.github/workflows/tests.yml'
+      - "!.github/workflows/tests.yml"
       - .editorconfig
       - .gitattributes
       - .gitignore
       - .htaccess
-      - '**.md'
+      - "**.md"
     branches:
       - master
   pull_request:
     paths-ignore:
       - .chglog/**
       - .github/**
-      - '!.github/workflows/tests.yml'
+      - "!.github/workflows/tests.yml"
       - .editorconfig
       - .gitattributes
       - .gitignore
       - .htaccess
-      - '**.md'
+      - "**.md"
     branches:
       - master
+  pull_request_target:
+    types: [opened, synchronize, ready_for_review]
 
 jobs:
   silverstripe-module:
