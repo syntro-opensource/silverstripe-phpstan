@@ -33,10 +33,11 @@
         "phpunit/phpunit": "^9.4"
     },
     "scripts": {
+        "build": "sake dev/build",
         "phpcs": "phpcs -n -l src/ src/Reflection/ src/Rule/ src/Type tests/ tests/Reflection/ tests/Rule/ tests/Type/",
         "phpcbf": "phpcbf -n src/ src/Reflection/ src/Rule/ src/Type tests/ tests/Reflection/ tests/Rule/ tests/Type/",
         "phpunit": "phpunit -c \"tests/phpunit.xml\" tests/",
-        "phpstan": "phpstan analyse src/ tests/ -c \"tests/phpstan.neon\" -a \"tests/bootstrap-phpstan.php\" --level 4",
+        "phpstan": "phpstan analyse src/ tests/ -c \"tests/phpstan.neon\" -a \"tests/bootstrap-phpstan.php\" --level 4 --memory-limit=1G",
         "post-install-cmd": [
             "php ./other/extract-phar.php"
         ]
