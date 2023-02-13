@@ -2,6 +2,9 @@
 
 namespace DataObjectStaticDynamicMethodReturnTypesNamespace;
 
+use PHPStan\Type\NullType;
+use PHPStan\Type\UnionType;
+use PHPStan\Type\UnionTypeHelper;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBField;
@@ -39,6 +42,15 @@ class Foo
         //     sprintf('%s', ClassHelper::HTMLText),
         //     DataObject::create_field(sprintf('%s', ClassHelper::HTMLText)::class)
         // );
+
+        assertType(
+            sprintf('%s|null', ClassHelper::SiteTree),
+            SiteTree::get_one(1)
+        );
+        assertType(
+            sprintf('%s|null', ClassHelper::SiteTree),
+            SiteTree::get_by_id(1)
+        );
         die;
     }
 }

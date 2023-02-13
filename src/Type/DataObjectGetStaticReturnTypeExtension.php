@@ -12,6 +12,7 @@ use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Analyser\Scope;
 use PHPStan\Type\Constant\ConstantStringType;
+use PHPStan\Type\NullType;
 use PHPStan\Type\Type;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\TypeCombinator;
@@ -98,7 +99,9 @@ class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicSta
                 if ($callerClass === 'self') {
                     $callerClass = $scope->getClassReflection()->getName();
                 }
-                return new ObjectType($callerClass);
+                // get_one is nullable according to SS 4.x.x
+                // https://api.silverstripe.org/4/SilverStripe/ORM/DataObject.html#method_get_one
+                return TypeCombinator::union(new ObjectType($callerClass), new NullType());
             case 'get_by_id':
                 $callerClass = $methodCall->class->toString();
                 if ($callerClass === 'static') {
@@ -107,7 +110,10 @@ class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicSta
                 if ($callerClass === 'self') {
                     $callerClass = $scope->getClassReflection()->getName();
                 }
-                return  new ObjectType($callerClass);
+
+                // get_by_id is nullable according to SS 4.x.x
+                // https://api.silverstripe.org/4/SilverStripe/ORM/DataObject.html#method_get_by_id
+                return TypeCombinator::union(new ObjectType($callerClass), new NullType());
         }
         // NOTE(mleutenegger): 2019-11-10
         // taken from https://github.com/phpstan/phpstan#dynamic-return-type-extensions
