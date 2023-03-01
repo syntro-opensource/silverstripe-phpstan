@@ -147,8 +147,11 @@ class MethodClassReflectionExtension implements MethodsClassReflectionExtension,
                         }
                     }
                     // Ignore parameters
-                    $type = explode('(', $type, 2);
-                    $type = $type[0];
+                    $type = explode('(', $type, 2)[0];
+
+                    // Ignore dot notation such as 'MyClass::class.MyField'
+                    $type = explode('.', $type, 2)[0];
+
                     $componentMethodClass = new $componentClass($methodName, $classReflection, new ObjectType($type));
                     $methods[strtolower($methodName)] = $componentMethodClass;
                 }
