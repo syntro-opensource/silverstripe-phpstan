@@ -9,6 +9,7 @@ use PHPStan\Type\Type;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\IterableTypeTrait;
 use PHPStan\TrinaryLogic;
+use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\VerbosityLevel;
 
 class DataListType extends ObjectType
@@ -36,7 +37,7 @@ class DataListType extends ObjectType
 
     public function getIterableValueType(): Type
     {
-        return $this->itemType;
+        return TypeCombinator::addNull($this->itemType);
     }
 
     public function isDocumentableNatively(): bool
