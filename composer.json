@@ -25,7 +25,8 @@
         "php": "~7.1 || ~8.0",
         "silverstripe/framework": "~4.3",
         "silverstripe/vendor-plugin": "^1.0",
-        "phpstan/phpstan": "^1.5"
+        "phpstan/phpstan": "^1.5",
+        "silverstripe/recipe-cms": "^4.11.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0",
@@ -33,10 +34,14 @@
         "phpunit/phpunit": "^9.4"
     },
     "scripts": {
+        "build": "sake dev/build",
         "phpcs": "phpcs -n -l src/ src/Reflection/ src/Rule/ src/Type tests/ tests/Reflection/ tests/Rule/ tests/Type/",
         "phpcbf": "phpcbf -n src/ src/Reflection/ src/Rule/ src/Type tests/ tests/Reflection/ tests/Rule/ tests/Type/",
-        "phpunit": "bash ../../../vendor/bin/phpunit -c \"tests/phpunit.xml\" tests/",
-        "phpstan": "bash ../../../vendor/bin/phpstan analyse src/ tests/ -c \"tests/phpstan.neon\" -a \"tests/bootstrap-phpstan.php\" --level 4"
+        "phpunit": "phpunit -c \"tests/phpunit.xml\" tests/",
+        "phpstan": "phpstan analyse src/ tests/ -c \"tests/phpstan.neon\" -a \"tests/bootstrap-phpstan.php\" --level 4 --memory-limit=1G",
+        "post-install-cmd": [
+            "php ./other/extract-phar.php"
+        ]
     },
     "autoload": {
         "psr-4": {
@@ -47,7 +52,20 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.x-dev"
-        }
+        },
+        "project-files-installed": [
+            "app/.htaccess",
+            "app/_config.php",
+            "app/_config/mimevalidator.yml",
+            "app/_config/mysite.yml",
+            "app/src/Page.php",
+            "app/src/PageController.php"
+        ],
+        "public-files-installed": [
+            ".htaccess",
+            "index.php",
+            "web.config"
+        ]
     },
     "config": {
         "allow-plugins": {

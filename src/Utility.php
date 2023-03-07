@@ -5,7 +5,6 @@ namespace Syntro\SilverstripePHPStan;
 use Exception;
 use PhpParser\NodeAbstract;
 use PhpParser\Node\Arg;
-use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Scalar\String_;
@@ -23,7 +22,6 @@ use PHPStan\Type\MixedType;
 use PHPStan\Type\UnionType;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\FunctionReflection;
-use PHPStan\Reflection\ParametersAcceptor;
 
 class Utility
 {
@@ -82,7 +80,8 @@ class Utility
         }
 
         if (!$label) {
-            var_dump($node);
+            // (Marwan): This consumes memory. TODO: Enable with debug?
+            // var_dump($node);
             throw new Exception(__FUNCTION__.': Unhandled or invalid "class" data. Type passed:'.get_class($node));
         }
         return self::getClassFromInjectorString($label);
@@ -162,7 +161,8 @@ class Utility
             return self::getMethodReturnType($methodOrFunctionReflection);
         }
         if (!$class) {
-            var_dump($node);
+            // (Marwan): This consumes memory. TODO: Enable with debug?
+            // var_dump($node);
             throw new Exception(__FUNCTION__.':Unhandled or invalid "class" data. Type passed:'.get_class($node));
         }
 

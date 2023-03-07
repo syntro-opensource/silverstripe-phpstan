@@ -5,10 +5,14 @@ namespace Syntro\SilverstripePHPStan\Type;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\PropertyReflection;
+use PHPStan\ShouldNotHappenException;
+use PHPStan\Type\NullType;
 use PHPStan\Type\Type;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\IterableTypeTrait;
 use PHPStan\TrinaryLogic;
+use PHPStan\Type\TypeCombinator;
+use PHPStan\Type\UnionType;
 use PHPStan\Type\VerbosityLevel;
 
 class DataListType extends ObjectType
@@ -34,9 +38,12 @@ class DataListType extends ObjectType
         return $this->itemType;
     }
 
+    /**
+     * @throws ShouldNotHappenException
+     */
     public function getIterableValueType(): Type
     {
-        return $this->itemType;
+        return  TypeCombinator::addNull($this->itemType);
     }
 
     public function isDocumentableNatively(): bool

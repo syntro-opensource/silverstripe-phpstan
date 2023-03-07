@@ -2,9 +2,6 @@
 
 namespace Syntro\SilverstripePHPStan\Tests\Type;
 
-use Syntro\SilverstripePHPStan\Type\DataListReturnTypeExtension;
-use Syntro\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension;
-use Syntro\SilverstripePHPStan\ClassHelper;
 use PHPStan\Testing\TypeInferenceTestCase;
 
 class DataObjectReturnTypeExtensionTest extends TypeInferenceTestCase

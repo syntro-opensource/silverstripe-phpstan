@@ -10,6 +10,9 @@
 		failOnRisky="true"
 		failOnWarning="true"
 >
+    <php>
+        <ini name="memory_limit" value="2G" />
+    </php>
     <testsuites>
         <testsuite name="Default">
             <directory>tests</directory>
