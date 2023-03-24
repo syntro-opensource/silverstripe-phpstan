@@ -89,23 +89,23 @@ class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicSta
                     // Handle DataObject::get_one('Page')
                     $arg = $methodCall->args[0];
                     $type = Utility::getTypeFromVariable($arg, $methodReflection);
-                    return $type;
+                    return TypeCombinator::addNull($type);
                 }
                 // Handle Page::get() / self::get()
                 $callerClass = $methodCall->class->toString();
                 if ($callerClass === 'static') {
-                    return Utility::getMethodReturnType($methodReflection);
+                    return TypeCombinator::addNull(Utility::getMethodReturnType($methodReflection));
                 }
                 if ($callerClass === 'self') {
                     $callerClass = $scope->getClassReflection()->getName();
                 }
                 // get_one is nullable according to SS 4.x.x
                 // https://api.silverstripe.org/4/SilverStripe/ORM/DataObject.html#method_get_one
-                return TypeCombinator::union(new ObjectType($callerClass), new NullType());
+                return TypeCombinator::addNull(new ObjectType($callerClass));
             case 'get_by_id':
                 $callerClass = $methodCall->class->toString();
                 if ($callerClass === 'static') {
-                    return Utility::getMethodReturnType($methodReflection);
+                    return TypeCombinator::addNull(Utility::getMethodReturnType($methodReflection));
                 }
                 if ($callerClass === 'self') {
                     $callerClass = $scope->getClassReflection()->getName();
@@ -113,7 +113,7 @@ class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicSta
 
                 // get_by_id is nullable according to SS 4.x.x
                 // https://api.silverstripe.org/4/SilverStripe/ORM/DataObject.html#method_get_by_id
-                return TypeCombinator::union(new ObjectType($callerClass), new NullType());
+                return TypeCombinator::addNull(new ObjectType($callerClass));
         }
         // NOTE(mleutenegger): 2019-11-10
         // taken from https://github.com/phpstan/phpstan#dynamic-return-type-extensions

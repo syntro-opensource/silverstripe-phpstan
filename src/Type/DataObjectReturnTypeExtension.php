@@ -21,6 +21,7 @@ use PHPStan\Type\ArrayType;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StaticType;
+use PHPStan\Type\UnionType;
 
 class DataObjectReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
@@ -78,12 +79,17 @@ class DataObjectReturnTypeExtension implements DynamicMethodReturnTypeExtension
                     if (count($type->getReferencedClasses()) === 1) {
                         $className = $type->getReferencedClasses()[0];
                     }
-                } else if ($type instanceof ObjectType) {
+                } elseif ($type instanceof ObjectType) {
                     $className = $type->getClassName();
+                } elseif ($type instanceof UnionType) {
+                    $referencedClasses = $type->getReferencedClasses();
+                    if (count($referencedClasses) === 1) {
+                        $className = $referencedClasses[0];
+                    }
                 }
                 if (!$className) {
                     throw new Exception('Unhandled type: '.get_class($type));
-                    //return Utility::getMethodReturnType($methodReflection);
+                    // return Utility::getMethodReturnType($methodReflection);
                 }
                 if (count($methodCall->args) === 0) {
                     return Utility::getMethodReturnType($methodReflection);
@@ -94,10 +100,10 @@ class DataObjectReturnTypeExtension implements DynamicMethodReturnTypeExtension
                 if ($arg instanceof Variable) {
                     // Unhandled, cannot retrieve variable value even if set in this scope.
                     return Utility::getMethodReturnType($methodReflection);
-                } else if ($arg instanceof ClassConstFetch) {
+                } elseif ($arg instanceof ClassConstFetch) {
                     // Handle "SiteTree::class" constant
                     $fieldName = (string)$arg->class;
-                } else if ($arg instanceof String_) {
+                } elseif ($arg instanceof String_) {
                     $fieldName = $arg->value;
                 }
                 if (!$fieldName) {

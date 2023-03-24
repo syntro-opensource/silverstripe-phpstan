@@ -30,7 +30,7 @@ class Foo
         // //     SiteTree::get_one()
         // // );
         assertType(
-            sprintf('%s', ClassHelper::SiteTree),
+            sprintf('%s|null', ClassHelper::SiteTree),
             DataObject::get_one(SiteTree::class)
         );
 
@@ -45,7 +45,7 @@ class Foo
 
         assertType(
             sprintf('%s|null', ClassHelper::SiteTree),
-            SiteTree::get_one(1)
+            SiteTree::get_one(SiteTree::class)
         );
         assertType(
             sprintf('%s|null', ClassHelper::SiteTree),

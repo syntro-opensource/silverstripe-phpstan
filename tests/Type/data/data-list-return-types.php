@@ -15,6 +15,7 @@ class Foo
             sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
             $siteTreeDataList->filter(array("ID" => "1"))
         );
+
         assertType(
             sprintf('%s<%s>', ClassHelper::DataList, ClassHelper::SiteTree),
             $siteTreeDataList->filterAny(array("ID" => "1"))
