@@ -17,6 +17,16 @@ if (file_exists(__DIR__ . '/../../autoload.php')) {
     exit(1);
 }
 
+// Ensure that the `Page` and `PageController` classes exist, if they don't _(for example when testing a
+// silverstripe module)_ ensure that the symbols are registered.
+if (!class_exists(\Page::class)) {
+    require __DIR__ . '/stubs/Page.php';
+}
+
+if (!class_exists(\PageController::class)) {
+    require __DIR__ . '/stubs/PageController.php';
+}
+
 // Ensure global $_SERVER exists
 global $_SERVER;
 if (!$_SERVER) {
