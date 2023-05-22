@@ -12,6 +12,7 @@ on:
       - '**.md'
     branches:
       - master
+      - '5'
   pull_request:
     paths-ignore:
       - .chglog/**
@@ -24,6 +25,7 @@ on:
       - '**.md'
     branches:
       - master
+      - '5'
 
 jobs:
   silverstripe-module:
