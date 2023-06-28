@@ -27,7 +27,7 @@ class Foo
         );
         assertType(
             MySQLDatabase::class,
-            Injector::inst()->get("MySQLPDODatabase")
+            Injector::inst()->get("MySQLDatabase")
         );
 
         assertType(
@@ -40,7 +40,7 @@ class Foo
         );
         assertType(
             MySQLDatabase::class,
-            singleton("MySQLPDODatabase")
+            singleton("MySQLDatabase")
         );
         die;
     }

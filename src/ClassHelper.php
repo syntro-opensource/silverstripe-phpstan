@@ -29,7 +29,7 @@ class ClassHelper
 
     // Controller
     const ContentController = \SilverStripe\CMS\Controllers\ContentController::class;
-    const RequestFilter = \SilverStripe\Control\RequestFilter::class;
+    const HTTPMiddleware = \SilverStripe\Control\Middleware\HTTPMiddleware::class;
 
     // FormField
     const DBField = \SilverStripe\ORM\FieldType\DBField::class;

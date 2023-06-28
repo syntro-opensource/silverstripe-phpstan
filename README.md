@@ -21,7 +21,7 @@ This PHPStan module is able to reason about extensions installed specific to you
 
 ## Composer Install
 
-SilverStripe 4.X
+SilverStripe 5.X
 ```
 composer require --dev syntro/silverstripe-phpstan
 ```
@@ -29,7 +29,7 @@ composer require --dev syntro/silverstripe-phpstan
 
 ## Requirements
 
-* SilverStripe 4.3+
+* SilverStripe 5.0+
 
 ## Documentation
 
@@ -42,7 +42,7 @@ composer require --dev syntro/silverstripe-phpstan
 * PHPStan checks if properties are actually initialized, read and written. This
 however does not apply to Silverstripes [configuration properties](https://docs.silverstripe.org/en/4/developer_guides/configuration/configuration/#configuration-properties).
 In order to tell PHPStan which of your properties are configuration values, you have
-to use the [`@config` docblock](https://docs.silverstripe.org/en/4/developer_guides/configuration/configuration/#configuration-properties).
+to use the [`@config` docblock](https://docs.silverstripe.org/en/5/developer_guides/configuration/configuration/#configuration-properties).
 * The type of the `owner` property can't be reasoned about for extensions. You must use `getOwner()`. Related Issues: [#1043](https://github.com/phpstan/phpstan/issues/1043) and [#1044](https://github.com/phpstan/phpstan/issues/1044)
 
 ## Credits
