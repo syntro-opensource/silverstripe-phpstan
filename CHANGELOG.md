@@ -8,6 +8,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+<a name="5.0.0"></a>
+## [5.0.0] - 2023-06-28
+### 🍰 Added
+- support for dot notations in DataObject Relations ([#14](https://github.com/syntro-opensource/silverstripe-phpstan/issues/14)) ([#21](https://github.com/syntro-opensource/silverstripe-phpstan/issues/21))
+- information for people still using Silverstripe 4
+- support for silverstripe 5 ([#19](https://github.com/syntro-opensource/silverstripe-phpstan/issues/19))
+- Stubs for Page and PageController to ensure these symbols also exist for modules ([#18](https://github.com/syntro-opensource/silverstripe-phpstan/issues/18))
+- standardized testsuites ([#11](https://github.com/syntro-opensource/silverstripe-phpstan/issues/11))
+
+### 🐞 Fixed
+- tests are actually executed for the 5 branch
+
+### 🔧 Changed
+- Uses v5 testsuite
+
+
 <a name="1.0.0"></a>
 ## [1.0.0] - 2022-04-30
 ### 🍰 Added
@@ -31,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - github action tests ([#3](https://github.com/syntro-opensource/silverstripe-phpstan/issues/3))
 
 
-[Unreleased]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/5.0.0...HEAD
+[5.0.0]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/1.0.0...5.0.0
 [1.0.0]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/0.0.0...1.0.0
 [0.0.0]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/fork...0.0.0
