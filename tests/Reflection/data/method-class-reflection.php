@@ -14,17 +14,17 @@ use function PHPStan\Testing\assertType;
  * @return void
  */
 function initDbRelations() {
-    Config::inst()->merge(Team::class, 'has_many', [
+    Config::modify()->merge(Team::class, 'has_many', [
         'Players' => Player::class,
         'WinningPlayers' => Player::class . '.WinningTeam'
     ]);
 
-    Config::inst()->merge(Player::class, 'has_one', [
+    Config::modify()->merge(Player::class, 'has_one', [
         'Team' => Team::class,
         'WinningTeam' => Team::class . '.WinningPlayers'
     ]);
 
-    Config::inst()->merge(Coach::class, 'belongs_to', [
+    Config::modify()->merge(Coach::class, 'belongs_to', [
         'Team' => Team::class,
         'WinningTeam' => Team::class . '.WinningCoach',
     ]);
