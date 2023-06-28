@@ -25,8 +25,8 @@
         "php": "~8.0",
         "silverstripe/framework": "~5.0",
         "phpstan/phpstan": "^1.5",
-        "silverstripe/versioned": "^2.0@RC",
-        "silverstripe/cms": "^5.0@RC"
+        "silverstripe/versioned": "^2.0",
+        "silverstripe/cms": "^5.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0",
