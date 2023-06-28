@@ -23,9 +23,9 @@ This PHPStan module is able to reason about extensions installed specific to you
 
 SilverStripe 5.X
 ```
-composer require --dev syntro/silverstripe-phpstan
+composer require --dev syntro/silverstripe-phpstan ^5
 ```
-
+> For Silverstripe 4, see [the corresponding branch](https://github.com/syntro-opensource/silverstripe-phpstan/tree/4).
 
 ## Requirements
 
