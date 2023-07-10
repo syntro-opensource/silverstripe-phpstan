@@ -3,6 +3,7 @@
 namespace Syntro\SilverstripePHPStan\Type;
 
 use Exception;
+use SilverStripe\Core\ClassInfo;
 use Syntro\SilverstripePHPStan\ClassHelper;
 use Syntro\SilverstripePHPStan\ConfigHelper;
 use Syntro\SilverstripePHPStan\Utility;
@@ -127,7 +128,7 @@ class ExtensionReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnT
 
     private function getClassesUsingExtensibleTrait()
     {
-        $classes = get_declared_classes();
+        $classes = ClassInfo::allClasses();
         $result = array();
         foreach ($classes as $class) {
             $hasTrait = false;
