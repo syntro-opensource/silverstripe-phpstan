@@ -32,6 +32,12 @@ services:
         class: Syntro\SilverstripePHPStan\Type\DataObjectGetStaticReturnTypeExtension
         tags:
             - phpstan.broker.dynamicStaticMethodReturnTypeExtension
+    # This adds additional type info to `Versioned::get*()` so that it knows what class
+    # while be returned when iterating.
+    -
+        class: Syntro\SilverstripePHPStan\Type\VersionedGetStaticReturnTypeExtension
+        tags:
+            - phpstan.broker.dynamicStaticMethodReturnTypeExtension
     # This allows `singleton("File")` calls to understand the exact classes being returned
     # by using your configuration. (ie. uses Injector information if it's set)
     -
