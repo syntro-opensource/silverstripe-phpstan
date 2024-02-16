@@ -3,6 +3,8 @@
 namespace Syntro\SilverstripePHPStan\Type;
 
 use Exception;
+use PHPStan\Type\NullType;
+use PHPStan\Type\UnionType;
 use Syntro\SilverstripePHPStan\ClassHelper;
 use Syntro\SilverstripePHPStan\ConfigHelper;
 use Syntro\SilverstripePHPStan\Utility;
@@ -74,11 +76,17 @@ class DataObjectReturnTypeExtension implements DynamicMethodReturnTypeExtension
 
             case 'dbObject':
                 $className = '';
+                if ($type instanceof UnionType) {
+                    $types = array_filter($type->getTypes(), fn ($subType) => !($subType instanceof NullType));
+                    if (count($types) == 1) {
+                        $type = $types[0];
+                    }
+                }
                 if ($type instanceof StaticType) {
                     if (count($type->getReferencedClasses()) === 1) {
                         $className = $type->getReferencedClasses()[0];
                     }
-                } else if ($type instanceof ObjectType) {
+                } elseif ($type instanceof ObjectType) {
                     $className = $type->getClassName();
                 }
                 if (!$className) {
