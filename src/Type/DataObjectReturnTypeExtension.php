@@ -3,26 +3,20 @@
 namespace Syntro\SilverstripePHPStan\Type;
 
 use Exception;
-use PHPStan\Type\NullType;
+use PhpParser\Node\Expr\ClassConstFetch;
+use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Expr\Variable;
+use PhpParser\Node\Scalar\String_;
+use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\MethodReflection;
+use PHPStan\Type\DynamicMethodReturnTypeExtension;
+use PHPStan\Type\ObjectType;
+use PHPStan\Type\StaticType;
+use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
 use Syntro\SilverstripePHPStan\ClassHelper;
 use Syntro\SilverstripePHPStan\ConfigHelper;
 use Syntro\SilverstripePHPStan\Utility;
-use PHPStan\Type\DynamicMethodReturnTypeExtension;
-use PHPStan\Broker\Broker;
-use PhpParser\Node\Expr\MethodCall;
-use PhpParser\Node\Expr\PropertyFetch;
-use PhpParser\Node\Expr\Variable;
-use PhpParser\Node\Scalar\String_;
-use PhpParser\Node\Expr\ClassConstFetch;
-use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\MethodReflection;
-use PHPStan\Analyser\Scope;
-use PHPStan\Type\Type;
-use PHPStan\Type\ArrayType;
-use PHPStan\Type\IntegerType;
-use PHPStan\Type\ObjectType;
-use PHPStan\Type\StaticType;
 
 class DataObjectReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
@@ -77,10 +71,7 @@ class DataObjectReturnTypeExtension implements DynamicMethodReturnTypeExtension
             case 'dbObject':
                 $className = '';
                 if ($type instanceof UnionType) {
-                    $types = array_filter($type->getTypes(), fn ($subType) => !($subType instanceof NullType));
-                    if (count($types) == 1) {
-                        $type = $types[0];
-                    }
+                    $type = array_filter($type->getTypes(), fn ($subType) => $subType instanceof ObjectType)[0] ?? null;
                 }
                 if ($type instanceof StaticType) {
                     if (count($type->getReferencedClasses()) === 1) {
