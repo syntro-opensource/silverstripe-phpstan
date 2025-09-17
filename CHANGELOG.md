@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+<a name="5.0.1"></a>
+## [5.0.1] - 2025-09-18
+### 🐞 Fixed
+- QUICKFIX: remove `ReadWriteConfigPropertiesRule` as it triggers an error ([#32](https://github.com/syntro-opensource/silverstripe-phpstan/issues/32))
+
+### 🗑 Removed
+- silverstripe/cms from dependencies ([#31](https://github.com/syntro-opensource/silverstripe-phpstan/issues/31))
+
+
 <a name="5.0.0"></a>
 ## [5.0.0] - 2023-06-28
 ### 🍰 Added
@@ -47,7 +56,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - github action tests ([#3](https://github.com/syntro-opensource/silverstripe-phpstan/issues/3))
 
 
-[Unreleased]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/5.0.0...HEAD
+[Unreleased]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/5.0.1...HEAD
+[5.0.1]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/1.0.0...5.0.0
 [1.0.0]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/0.0.0...1.0.0
 [0.0.0]: https://github.com/syntro-opensource/silverstripe-phpstan/compare/fork...0.0.0
