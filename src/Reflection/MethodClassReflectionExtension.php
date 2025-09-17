@@ -88,7 +88,7 @@ class MethodClassReflectionExtension implements MethodsClassReflectionExtension,
         //     Call: $this->MyFunction() will be cached.
         //
         foreach (get_class_methods($class) as $methodName) {
-            if ($methodName && $methodName[0] === '_' && isset($methodName[1]) && $methodName[1] !== '_') {
+            if ($methodName && $methodName[0] === '_' && isset($methodName[1]) && $methodName[1] !== '_') { /* @phpstan-ignore-line */
                 $uncachedMethodName = substr($methodName, 1);
                 $methods[strtolower($uncachedMethodName)] = new CachedMethod($classReflection->getNativeMethod($methodName));
             }
