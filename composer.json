@@ -25,13 +25,13 @@
         "php": "~8.0",
         "silverstripe/framework": "~5.0",
         "phpstan/phpstan": "^1.5",
-        "silverstripe/versioned": "^2.0",
-        "silverstripe/cms": "^5.0"
+        "silverstripe/versioned": "^2.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0",
         "phpstan/phpstan-phpunit": "^1",
-        "phpunit/phpunit": "^9.4"
+        "phpunit/phpunit": "^9.4",
+        "silverstripe/cms": "^5.0"
     },
     "scripts": {
         "phpcs": "phpcs -n -l src/ src/Reflection/ src/Rule/ src/Type tests/ tests/Reflection/ tests/Rule/ tests/Type/",
