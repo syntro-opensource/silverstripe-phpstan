@@ -27,6 +27,7 @@ on:
     branches:
       - master
       - '5'
+      - '6'
 
 jobs:
   silverstripe-module-6:
