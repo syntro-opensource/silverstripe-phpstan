@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": "~8.1.0",
+        "php": "~8.3",
         "silverstripe/framework": "~6.0",
         "phpstan/phpstan": "^1.5",
         "silverstripe/versioned": "^3.0"
