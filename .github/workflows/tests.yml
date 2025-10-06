@@ -11,8 +11,6 @@ on:
       - .htaccess
       - '**.md'
     branches:
-      - master
-      - '5'
       - '6'
   pull_request:
     paths-ignore:
@@ -25,8 +23,6 @@ on:
       - .htaccess
       - '**.md'
     branches:
-      - master
-      - '5'
       - '6'
 
 jobs:
