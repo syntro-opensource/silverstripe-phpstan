@@ -35,13 +35,17 @@ jobs:
     uses: syntro-opensource/workflows/.github/workflows/silverstripe-module-6.yml@master
     with:
       phpunit: true
+      phpunit_config_file: tests/phpunit.xml
       phpstan: true
+      phpstan_config: tests/phpstan.neon
+      phpstan_bootstrap: tests/bootstrap-phpstan.php
   silverstripe-module-codecoverage:
     name: 📊 Silverstripe Code Coverage
     uses: syntro-opensource/workflows/.github/workflows/silverstripe-module-codecoverage.yml@master
     with:
       php_version: 8.3
       silverstripe_version: 6.0
+      phpunit_config_file: tests/phpunit.xml
   silverstripe-phpcs:
     name: 🧹 Silverstripe PHPCS
     uses: syntro-opensource/workflows/.github/workflows/silverstripe-phpcs.yml@master
