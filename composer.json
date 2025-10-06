@@ -24,7 +24,7 @@
     "require": {
         "php": "~8.3",
         "silverstripe/framework": "~6.0",
-        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan": "^1.5",
         "silverstripe/versioned": "^3.0"
     },
     "require-dev": {
