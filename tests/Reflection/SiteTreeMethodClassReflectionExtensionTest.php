@@ -15,19 +15,19 @@ use PHPStan\Type\ObjectType;
 final class SiteTreeMethodClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 {
     /** @var \PHPStan\Broker\Broker */
-    private $broker;
+    private static $broker;
 
     /** @var MethodClassReflectionExtension */
-    private $method;
+    private static $method;
 
     protected function setUp(): void
     {
-        $this->broker = $this->createBroker();
-        $this->method = new MethodClassReflectionExtension();
-        $this->method->setBroker($this->broker);
+        self::$broker = $this->createReflectionProvider();
+        self::$method = new MethodClassReflectionExtension();
+        self::$method->setBroker($this->broker);
     }
 
-    public function dataHasMethod(): array
+    public static function dataHasMethod(): array
     {
         return [
             [
