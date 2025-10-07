@@ -6,7 +6,7 @@ use MethodClassReflectionReturnTypesNamespace\Team;
 use PHPStan\Testing\TypeInferenceTestCase;
 use SilverStripe\Core\Config\Config;
 
-class MethodClassReflectionExtensionTest  extends TypeInferenceTestCase
+class MethodClassReflectionExtensionTest extends TypeInferenceTestCase
 {
     /**
      * @return iterable<mixed>
