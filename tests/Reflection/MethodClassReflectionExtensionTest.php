@@ -21,12 +21,12 @@ class MethodClassReflectionExtensionTest extends TypeInferenceTestCase
     /**
      * @dataProvider dataFileAsserts
      */
-    public static function testFileAsserts(
+    public function testFileAsserts(
         string $assertType,
         string $file,
         ...$args
     ): void {
-        singleton(self::class)->assertFileAsserts($assertType, $file, ...$args);
+        $this->assertFileAsserts($assertType, $file, ...$args);
     }
 
     public static function getAdditionalConfigFiles(): array
