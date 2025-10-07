@@ -15,19 +15,19 @@ use PHPStan\Type\ObjectType;
 final class SiteTreeMethodClassReflectionExtensionTest extends \PHPStan\Testing\PHPStanTestCase
 {
     /** @var \PHPStan\Broker\Broker */
-    private $broker;
+    private static $broker;
 
     /** @var MethodClassReflectionExtension */
-    private $method;
+    private static $method;
 
     protected function setUp(): void
     {
-        $this->broker = $this->createBroker();
-        $this->method = new MethodClassReflectionExtension();
-        $this->method->setBroker($this->broker);
+        self::$broker = $this->createReflectionProvider();
+        self::$method = new MethodClassReflectionExtension();
+        self::$method->setBroker($this->broker);
     }
 
-    public function dataHasMethod(): array
+    public static function dataHasMethod(): array
     {
         return [
             [
@@ -54,10 +54,10 @@ final class SiteTreeMethodClassReflectionExtensionTest extends \PHPStan\Testing\
      * @param string $method
      * @param bool $result
      */
-    public function testHasMethod(string $className, string $method, bool $result): void
+    public static function testHasMethod(string $className, string $method, bool $result): void
     {
-        $classReflection = $this->broker->getClass($className);
-        self::assertSame($result, $this->method->hasMethod($classReflection, $method));
+        $classReflection = self::$broker->getClass($className);
+        self::assertSame($result, self::$method->hasMethod($classReflection, $method));
     }
 
     public function testParentMethod(): void
@@ -74,10 +74,10 @@ final class SiteTreeMethodClassReflectionExtensionTest extends \PHPStan\Testing\
         self::assertSame(ClassHelper::SiteTree, $resultType->getClassName());
     }
 
-    public function testLinkTrackingMethod(): void
+    public static function testLinkTrackingMethod(): void
     {
-        $classReflection = $this->broker->getClass(ClassHelper::SiteTree);
-        $methodReflection = $this->method->getMethod($classReflection, 'LinkTracking');
+        $classReflection = self::$broker->getClass(ClassHelper::SiteTree);
+        $methodReflection = self::$method->getMethod($classReflection, 'LinkTracking');
         self::assertSame('LinkTracking', $methodReflection->getName());
         $dataListType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
         self::assertSame(DataListType::class, get_class($dataListType));

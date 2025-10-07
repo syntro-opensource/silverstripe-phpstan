@@ -22,16 +22,16 @@
         }
     ],
     "require": {
-        "php": "~8.0",
-        "silverstripe/framework": "~5.0",
-        "phpstan/phpstan": "^1.5",
-        "silverstripe/versioned": "^2.0"
+        "php": "~8.3",
+        "silverstripe/framework": "~6.0",
+        "phpstan/phpstan": "^2.0",
+        "silverstripe/versioned": "^3.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0",
-        "phpstan/phpstan-phpunit": "^1",
-        "phpunit/phpunit": "^9.4",
-        "silverstripe/cms": "^5.0"
+        "phpstan/phpstan-phpunit": "*",
+        "phpunit/phpunit": "^11.0",
+        "silverstripe/cms": "^6.0"
     },
     "scripts": {
         "phpcs": "phpcs -n -l src/ src/Reflection/ src/Rule/ src/Type tests/ tests/Reflection/ tests/Rule/ tests/Type/",

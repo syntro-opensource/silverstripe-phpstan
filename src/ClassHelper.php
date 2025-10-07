@@ -11,7 +11,7 @@ use SilverStripe\Core\ClassInfo;
 class ClassHelper
 {
     // const SSObject = 'Object'; // Removed in SS 4.X
-    const ViewableData = \SilverStripe\View\ViewableData::class;
+    const ModelData = \SilverStripe\Model\ModelData::class;
     const DataObject = \SilverStripe\ORM\DataObject::class;
     const Extensible = \SilverStripe\Core\Extensible::class;
 

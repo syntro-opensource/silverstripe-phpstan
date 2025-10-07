@@ -6,16 +6,16 @@ use MethodClassReflectionReturnTypesNamespace\Team;
 use PHPStan\Testing\TypeInferenceTestCase;
 use SilverStripe\Core\Config\Config;
 
-class MethodClassReflectionExtensionTest  extends TypeInferenceTestCase
+class MethodClassReflectionExtensionTest extends TypeInferenceTestCase
 {
     /**
      * @return iterable<mixed>
      */
-    public function dataFileAsserts(): iterable
+    public static function dataFileAsserts(): iterable
     {
         // path to a file with actual asserts of expected types:
         require_once(__DIR__ . '/data/method-class-reflection.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/method-class-reflection.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/method-class-reflection.php');
     }
 
     /**
