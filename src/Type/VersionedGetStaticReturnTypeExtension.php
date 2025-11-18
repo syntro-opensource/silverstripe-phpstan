@@ -16,26 +16,35 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Type\Type;
 use PHPStan\Type\ObjectType;
 
-class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicStaticMethodReturnTypeExtension
+class VersionedGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicStaticMethodReturnTypeExtension
 {
     public function getClass(): string
     {
-        return ClassHelper::DataObject;
+        return ClassHelper::Versioned;
     }
 
     public function isStaticMethodSupported(MethodReflection $methodReflection): bool
     {
         $name = $methodReflection->getName();
-        return $name === 'get' ||
-               $name === 'get_one' ||
-               $name === 'get_by_id';
+
+        return in_array($name, [
+            'get_including_deleted',
+            'get_by_stage',
+            'get_all_versions',
+
+            'get_version',
+            'get_one_by_stage',
+            'get_latest_version',
+        ]);
     }
 
     public function getTypeFromStaticMethodCall(MethodReflection $methodReflection, StaticCall $methodCall, Scope $scope): Type
     {
         $name = $methodReflection->getName();
         switch ($name) {
-            case 'get':
+            case 'get_including_deleted':
+            case 'get_by_stage':
+            case 'get_all_versions':
                 if (count($methodCall->args) > 0) {
                     // Handle DataObject::get('Page')
                     $arg = $methodCall->args[0];
@@ -52,8 +61,9 @@ class DataObjectGetStaticReturnTypeExtension implements \PHPStan\Type\DynamicSta
                 }
                 return new DataListType(ClassHelper::DataList, new ObjectType($callerClass));
 
-            case 'get_one':
-            case 'get_by_id':
+            case 'get_version':
+            case 'get_one_by_stage':
+            case 'get_latest_version':
                 if (count($methodCall->args) > 0) {
                     // Handle DataObject::get_one('Page')
                     $arg = $methodCall->args[0];

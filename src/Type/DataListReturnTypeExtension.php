@@ -3,6 +3,7 @@
 namespace Syntro\SilverstripePHPStan\Type;
 
 use Exception;
+use PHPStan\Type\TypeCombinator;
 use Syntro\SilverstripePHPStan\ClassHelper;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Reflection\MethodReflection;
@@ -122,7 +123,7 @@ class DataListReturnTypeExtension implements \PHPStan\Type\DynamicMethodReturnTy
             case 'byID':
             case 'first':
             case 'last':
-                return $type->getIterableValueType();
+                return TypeCombinator::addNull($type->getIterableValueType());
 
             default:
                 throw new Exception('Unhandled method call: '.$name);
