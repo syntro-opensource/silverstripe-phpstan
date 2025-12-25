@@ -109,7 +109,7 @@ class ConfigHelper
             foreach ($extensions as $extensionClass) {
                 // Ignore parameters (ie. "Versioned('Stage', 'Live')")
                 $extensionClass = explode('(', $extensionClass, 2);
-                $extensionClass = $extensionClass[0];
+                $extensionClass = Utility::getClassFromInjectorString($extensionClass[0])->getClassName();
 
                 $extensionClasses[$extensionClass] = $extensionClass;
             }
